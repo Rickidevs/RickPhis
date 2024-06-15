@@ -15,13 +15,6 @@ body {
     font-size: 14px;
 }
 
-.wrapper .header {
-    max-width: 350px;
-    width: 100%;
-    height: auto;
-    margin: 50px auto;
-}
-
 .wrapper .header .top,
 .wrapper .signup {
     background: #fff;
@@ -195,6 +188,31 @@ body {
     color: #757575 !important;
 }
 
+.languages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#languages {
+    margin: -10px 0;
+    border: 0px solid #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+    width: 40px;
+    background-color: #fafafa;
+    color: #757575;
+    font-size: 12px;
+    width: auto;
+    white-space: nowrap;
+}
+
+#cinsta {
+    color: #757575;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
 @media (max-width: 768px) {
     .links {
         display: block;
@@ -228,7 +246,8 @@ body {
     margin-right: 10px;
 }
 
-@media (max-width: 768px) {
+/* Tablet ve mobil cihazlarda görüntü gizlenir */
+@media (max-width: 1499px) {
     .languages {
         justify-content: center;
     }
@@ -236,4 +255,42 @@ body {
     #cinsta, #languages {
         margin: 5px;
     }
+
+    .image-desktop {
+        display: none;
+    }
+
+    .header {
+        position: relative;
+        max-width: 350px;
+        width: 100%;
+        height: auto;
+        margin: 50px auto;
+    }
 }
+
+
+/* Büyük ekranlarda görüntü ve header ayarları */
+@media (min-width: 1500px) {
+    .image-desktop {
+        position: absolute;
+        top: 0;
+        left: calc(50% - 360px);
+        z-index: 5;
+        gap: 5em;
+        max-width: 350px;
+        height: auto;
+        margin-top: 3em;
+    }
+
+    .header {
+        position: relative;
+        max-width: 350px;
+        width: 100%;
+        height: auto;
+        margin: 50px auto;
+        margin-right: 380px;
+    }
+
+}
+

