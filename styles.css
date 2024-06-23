@@ -246,7 +246,6 @@ body {
     margin-right: 10px;
 }
 
-/* Tablet ve mobil cihazlarda görüntü gizlenir */
 @media (max-width: 1499px) {
     .languages {
         justify-content: center;
@@ -270,7 +269,6 @@ body {
 }
 
 
-/* Büyük ekranlarda görüntü ve header ayarları */
 @media (min-width: 1500px) {
     .image-desktop {
         position: absolute;

