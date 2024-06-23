@@ -1,2 +1,0 @@
-Username = 'wewew'
-Password = 'wweewweewdcxxxc'
