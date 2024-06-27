@@ -1,4 +1,0 @@
-[27/06/2024 11:34:07] Username: test12345
-[27/06/2024 11:34:07] Password: test567890
-[27/06/2024 11:34:07] Username: testkullanici2345
-[27/06/2024 11:34:07] Password: test345567
