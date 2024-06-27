@@ -74,7 +74,7 @@ else
     fi
 fi
 
-requirements=("colorama" "argparse" "selenium" "webdriver-manager")
+requirements=("colorama" "argparse" "selenium" "webdriver-manager" "pyngrok")
 
 for package in "${requirements[@]}"
 do
@@ -107,7 +107,7 @@ if [ "$alias_choice" == "y" ] || [ "$alias_choice" == "Y" ]; then
         exit 1
     fi
 
-    echo "alias Rickphis='cd /opt/$(basename "$rickphis_dir") && python3 server.py'" >> $shell_rc
+    echo "alias Rickphis='python3 /opt/$(basename "$rickphis_dir")/server.py'" >> $shell_rc
     source $shell_rc
     echo -e "${GREEN}$TICK${NO_COLOR} Alias successfully created: Rickphis"
 else
