@@ -256,7 +256,7 @@ def start_server(web_site, port, output_file, redirect_location, check_login, ng
                     self.end_headers()
                 elif login_check == False and check_trust:
                     self.send_response(302)
-                    self.send_header('Location', f"http://{ngrok_url}:{c_port}/{error_web}")
+                    self.send_header('Location', f"http://{ngrok_url}/{error_web}")
                     self.end_headers()
             
             except Exception as e:
