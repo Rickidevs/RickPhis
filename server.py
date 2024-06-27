@@ -47,33 +47,35 @@ print(Fore.RESET)
 
 path_separator = '\\' if platform.system() == 'Windows' else '/'
 
+# Dil ve hata sayfası eşlemeleri
 language_mapping = {
-    'ar': f"htmls{'\\' if platform.system() == 'Windows' else '/'}ar.html",
-    'az': f"htmls{'\\' if platform.system() == 'Windows' else '/'}az.html",
-    'ch': f"htmls{'\\' if platform.system() == 'Windows' else '/'}ch.html",
-    'en': f"htmls{'\\' if platform.system() == 'Windows' else '/'}index.html",
-    'fr': f"htmls{'\\' if platform.system() == 'Windows' else '/'}fr.html",
-    'de': f"htmls{'\\' if platform.system() == 'Windows' else '/'}de.html",
-    'it': f"htmls{'\\' if platform.system() == 'Windows' else '/'}it.html",
-    'ko': f"htmls{'\\' if platform.system() == 'Windows' else '/'}ko.html",
-    'ru': f"htmls{'\\' if platform.system() == 'Windows' else '/'}ru.html",
-    'es': f"htmls{'\\' if platform.system() == 'Windows' else '/'}es.html",
-    'tr': f"htmls{'\\' if platform.system() == 'Windows' else '/'}tr.html"
+    'ar': f"htmls{path_separator}ar.html",
+    'az': f"htmls{path_separator}az.html",
+    'ch': f"htmls{path_separator}ch.html",
+    'en': f"htmls{path_separator}index.html",
+    'fr': f"htmls{path_separator}fr.html",
+    'de': f"htmls{path_separator}de.html",
+    'it': f"htmls{path_separator}it.html",
+    'ko': f"htmls{path_separator}ko.html",
+    'ru': f"htmls{path_separator}ru.html",
+    'es': f"htmls{path_separator}es.html",
+    'tr': f"htmls{path_separator}tr.html"
 }
 
 error_pages = {
-    'ar': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorar.html",
-    'az': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}erroraz.html",
-    'ch': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorch.html",
-    'en': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errordef.html",
-    'fr': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorfr.html",
-    'de': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorde.html",
-    'it': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorit.html",
-    'ko': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorko.html",
-    'ru': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errorru.html",
-    'es': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errores.html",
-    'tr': f"errors_htmls{'\\' if platform.system() == 'Windows' else '/'}errortr.html"
+    'ar': f"errors_htmls{path_separator}errorar.html",
+    'az': f"errors_htmls{path_separator}erroraz.html",
+    'ch': f"errors_htmls{path_separator}errorch.html",
+    'en': f"errors_htmls{path_separator}errordef.html",
+    'fr': f"errors_htmls{path_separator}errorfr.html",
+    'de': f"errors_htmls{path_separator}errorde.html",
+    'it': f"errors_htmls{path_separator}errorit.html",
+    'ko': f"errors_htmls{path_separator}errorko.html",
+    'ru': f"errors_htmls{path_separator}errorru.html",
+    'es': f"errors_htmls{path_separator}errores.html",
+    'tr': f"errors_htmls{path_separator}errortr.html"
 }
+
 
 # Yardım menüsü
 help_menu = f"""{Fore.WHITE}
