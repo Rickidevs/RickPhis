@@ -107,7 +107,7 @@ if [ "$alias_choice" == "y" ] || [ "$alias_choice" == "Y" ]; then
         exit 1
     fi
 
-    echo "alias Rickphis='python3 /opt/$(basename "$rickphis_dir")/server.py'" >> $shell_rc
+    echo "alias Rickphis='cd /opt/$(basename "$rickphis_dir") && python3 server.py'" >> $shell_rc
     source $shell_rc
     echo -e "${GREEN}$TICK${NO_COLOR} Alias successfully created: Rickphis"
 else
