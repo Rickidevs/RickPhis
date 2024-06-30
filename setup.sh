@@ -74,7 +74,7 @@ else
     fi
 fi
 
-requirements=("colorama" "argparse" "selenium" "webdriver-manager")
+requirements=("colorama" "argparse" "selenium" "webdriver-manager" "pyngrok")
 
 for package in "${requirements[@]}"
 do

