@@ -1,4 +1,5 @@
 import platform
+import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from colorama import Fore, init
 import argparse
@@ -93,7 +94,7 @@ def check_trust(username, password, headless=True):
     options = webdriver.ChromeOptions()
     if headless:
         options.add_argument('--headless')
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
     
     try:
         driver.get("https://www.instagram.com/accounts/login/")
