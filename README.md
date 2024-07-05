@@ -6,63 +6,72 @@ The most professional tool ever created and developed for Instagram
 ---
 ##  Explanation
 
-RickPhis differs from others in that it is designed to test the information entered by the user and give the user a real login experience. It was developed to alert you when you enter incorrect information and encourage you to enter correct information.
-
+RickPhis is a tool with the most up-to-date interface and the most realistic login experience. It is simple to use and almost identical to other cybersecurity tools. 
 
 # ⁉️ HOW TO USE
 
+- **set <args> <value>** 
+you can change the argument values with this command
+
+---
+- **show options** 
+see your current settings 
+
+---
+- **exit**  
+RickPhis - terminates
+
+---
+- **help**
+shows help menu
+
+---
+- **clear**
+cleans console
+
+---
+
 #### The working principle of the tool is based on the hacker's arguments and these arguments are as follows:
-- -s / --site 
-- -ng / --ngrok-token
-- -l / --lang
-- -p / --port 
-- -o / --output
-- -c / --check
-- --location / --loc
-- --headless / --heoff
+- lang
+- port 
+- output
+- check
+- ngrok
+- location
+- headless
 
 ---
- #### -s/--site | --site 1 
- is a required argument and cannot be left blank. it must be prefixed with the number of the relevant site.
-
----
-#### -ng/--ngrok-token | --ngrok-token 2abcd_345efgh
-you have to make the adjustment by giving your own ngrok token
----
-#### -l/--lang  | -l en
+#### lang  | set lang az
 you can specify the language of the target page by giving a country code. if you do not use this argument, the default is English.
 
 ---
-#### -p/--port |--port 8080
+#### port | set port 8080
 you can specify the connection point where the site will be published.
 
 ---
-#### -o/--output  | -o login.txt
-In response to this argument, it creates a file with the name and extension you provide and saves the victim's information there.
+#### output  | set output login.txt
+It creates a file with the given name and extension and saves the victim's information there.
 
 ---
-#### --loc/-location  | --location https://examplesite.com
-When the user clicks on the sign in button they are redirected to instagram by default, but you can change this with this argument. 
+#### location  | set location https://examplesite.com
+When the user clicks the login button they are redirected to instagram by default, but you can change that with this argument. NOTE: when linking, you need to start from http:// or https:// or you will not get the result you want 
 
 ---
-#### -c/--check | --check
-this command does not require any arguments. when given, it tests the victim's inputs with the original instagram, reflecting them as true or false to you and the victim
+#### check | set check true
+it tests the user information entered by the victim in your interface in the background to see if it is correct or incorrect. if it is incorrect, it notifies the victim that he entered the information incorrectly and encourages him to enter it again. it is deactivated by default. it is recommended to use it, but the response to the victim is delayed by 5-10 seconds, so take this risk
 
 ---
-#### --heoff/--headless | --headless
-this command does not require any arguments. when given, it runs the tool in headless mode.
+#### headless | set headless true 
+it is related to the check command. while the typed information is being tested, the scanner is opened on your device and the entries are filled in automatically, you have full control, but it is automatic. it is recommended to turn it off. this saves time in the response delay. 
 
+#### ngrok | set ngrok 12abcd_34dfvc
+phsihing site is running on local server, if you want to tunnel with ngrok we provide you this possibility, you just need to give ngrok token. it is completely up to you to do this
 ---
--s 1 -l en -p 8080 -o test.txt --location https://www.instagram.com -c
 
----
 ## 🪧 USED
 - **html**
 - **css**
 - **Python**
-  - _colorama_ 
-  - _selenium_ 
-  - _webdriver-manager_
 ---
 
 
