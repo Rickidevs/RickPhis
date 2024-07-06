@@ -94,22 +94,3 @@ do
 done
 
 echo -e "${GREEN}All checks completed. Environment is ready!${NO_COLOR}\n"
-
-read -p "Do you want to create an alias? (Y/n):" alias_choice
-
-if [ "$alias_choice" == "y" ] || [ "$alias_choice" == "Y" ]; then
-    if [ -n "$BASH_VERSION" ]; then
-        shell_rc="$HOME/.bashrc"
-    elif [ -n "$ZSH_VERSION" ]; then
-        shell_rc="$HOME/.zshrc"
-    else
-        echo -e "${YELLOW}WARNING: ${RED}$CROSS${NO_COLOR} Unsupported shell. Alias not created."
-        exit 1
-    fi
-
-    echo "alias Rickphis='python3 /opt/$(basename "$rickphis_dir")/server.py'" >> $shell_rc
-    source $shell_rc
-    echo -e "${GREEN}$TICK${NO_COLOR} Alias successfully created: Rickphis"
-else
-    echo -e "Alias creation cancelled."
-fi
