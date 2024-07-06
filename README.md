@@ -10,24 +10,19 @@ RickPhis is a tool with the most up-to-date interface and the most realistic log
 
 # ⁉️ HOW TO USE
 
-- **set <args> <value>** 
-you can change the argument values with this command
+- **set <args> <value>**  *you can change the argument values with this command*
 
 ---
-- **show options** 
-see your current settings 
+- **show options**  *see your current settings*
 
 ---
-- **exit**  
-RickPhis - terminates
+- **exit**   *RickPhis - terminates*
 
 ---
-- **help**
-shows help menu
+- **help** *shows help menu*
 
 ---
-- **clear**
-cleans console
+- **clear** *cleans console*
 
 ---
 
@@ -64,8 +59,10 @@ it tests the user information entered by the victim in your interface in the bac
 #### headless | set headless true 
 it is related to the check command. while the typed information is being tested, the scanner is opened on your device and the entries are filled in automatically, you have full control, but it is automatic. it is recommended to turn it off. this saves time in the response delay. 
 
+---
 #### ngrok | set ngrok 12abcd_34dfvc
 phsihing site is running on local server, if you want to tunnel with ngrok we provide you this possibility, you just need to give ngrok token. it is completely up to you to do this
+
 ---
 
 ## 🪧 USED
@@ -95,9 +92,8 @@ this tool only works on linux. not configured for windows/mac or others (it can 
 `./setup.sh` 
 
 ---
-setup.sh file will do the necessary installations, if you create an alias you can easily call the tool from anywhere by typing `Rickphis`, but if you don't, the tool directory will be in /opt
 
-`python3 /opt/RickPhis/server.py`  - to run without alias
+`python3 /opt/RickPhis/server.py`  - to run RickPhis
 
 ---
 
