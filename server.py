@@ -95,7 +95,7 @@ def check_trust(username, password, headless):
         options.add_argument("--window-size=1920,1080") 
 
     try:
-        driver = webdriver.Chrome(options=options)
+        driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
         driver.get("https://www.instagram.com/accounts/login/")
 
         user_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.NAME, "username")))
