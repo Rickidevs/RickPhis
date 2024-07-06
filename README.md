@@ -89,9 +89,9 @@ this tool only works on linux. not configured for windows/mac or others (it can 
 
 `cd RickPhis`
 
-`./setup.sh` 
+`chmod +x setup.sh`
 
----
+`./setup.sh` 
 
 `python3 /opt/RickPhis/server.py`  - to run RickPhis
 
