@@ -8,19 +8,6 @@ The most professional tool ever created and developed for Instagram
 
 RickPhis is a tool with the most up-to-date interface and the most realistic login experience. It is simple to use and almost identical to other cybersecurity tools. 
 
-# ⁉️ HOW TO USE
-
-- **rickphis**
----
-
-## 🪧 USED
-- **html**
-- **css**
-- **JavaScript**
-- **Python**
-- **bash**
----
-
 ---
 # 🔧 Installation
 
