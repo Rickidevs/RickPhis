@@ -1,12 +1,11 @@
 
-![RickPhis](https://raw.githubusercontent.com/Rickidevs/RickPhis/refs/heads/Main/RickPhis.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Rickidevs/RickPhis/refs/heads/Main/RickPhis.png" alt="RickPhis">
+</p>
 
+# 🪝 <p align="center">RickPhis</p>
 
-# 🪝 RickPhis
-
-professional instagram phishing simulator tool
-
-
+<p align="center">professional instagram phishing simulator tool</p>
 ## 🔧 Installation
 
 ```bash
