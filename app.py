@@ -52,7 +52,7 @@ def login_insta(username, password):
         login_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type='submit']")))
         login_button.click()
 
-        time.sleep(5)
+        time.sleep(10)
 
         try:
             error_message = driver.find_element(By.CSS_SELECTOR, "div.xkmlbd1.xvs91rp.xd4r4e8.x1anpbxc.x1m39q7l.xyorhqc.x540dpk.x2b8uid").text
