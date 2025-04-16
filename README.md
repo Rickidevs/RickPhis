@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Rickidevs/RickPhis/refs/heads/Main/RickPhis.png" alt="RickPhis" width=300>
+  <img src="https://raw.githubusercontent.com/Rickidevs/RickPhis/refs/heads/Main/Rickphis.png" alt="RickPhis" width=300>
 </p>
 
 ## Installation
