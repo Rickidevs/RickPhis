@@ -1,6 +1,8 @@
 
-![RickPhis](https://raw.githubusercontent.com/Rickidevs/RickPhis/refs/heads/Main/R%C4%B0ckPhis.png)
-
+<p align="center">
+   <img src="https://raw.githubusercontent.com/Rickidevs/RickPhis/refs/heads/Main/R%C4%B0ckPhis.png" alt="RickPhis" width=300>
+ </p>
+ 
 # RickPhis 🎣
 
 > A customizable phishing simulation tool built with Python and Selenium.
