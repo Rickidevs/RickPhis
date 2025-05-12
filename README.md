@@ -5,7 +5,7 @@
  
 # RickPhis 🎣
 
-> A customizable phishing simulation tool built with Python and Selenium.
+> A customizable phishing simulation tool built with Python and Selenium
 
 RickPhis allows you to simulate phishing scenarios using a local web server and Ngrok tunneling. Designed for ethical hacking, cybersecurity education, and red team practice.
 
