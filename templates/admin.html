@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h2>Admin Panel Login</h2>
+    <form method="POST" action="/admin/auth">
+        <input type="text" name="admin_user" placeholder="Admin Username" required><br><br>
+        <input type="password" name="admin_pass" placeholder="Admin Password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+    {% if error %}
+    <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
