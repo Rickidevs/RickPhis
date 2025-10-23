@@ -1,0 +1,4 @@
+Flask==3.0.0
+selenium==4.15.2
+gunicorn==21.2.0
+webdriver-manager==4.0.1
